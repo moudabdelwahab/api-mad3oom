@@ -22,6 +22,15 @@ const options = {
         description: "Development Server",
       },
     ],
+    headers: {
+      IdempotencyKey: {
+        description: "Optional key to ensure request idempotency",
+        schema: {
+          type: "string",
+          format: "uuid"
+        }
+      }
+    },
     components: {
       securitySchemes: {
         ApiKeyAuth: {

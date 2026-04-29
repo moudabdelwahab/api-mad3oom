@@ -9,8 +9,9 @@ const Ticket = sequelize.define("Ticket", {
     primaryKey: true,
   },
   managerId: {
-    type: DataTypes.STRING, // External Manager ID from mad3oom.online
+    type: DataTypes.STRING,
     allowNull: false,
+    index: true,
   },
   apiKeyId: {
     type: DataTypes.UUID,
@@ -40,6 +41,9 @@ const Ticket = sequelize.define("Ticket", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+}, {
+  paranoid: true, // Enable Soft Delete
+  timestamps: true,
 });
 
 Ticket.belongsTo(ApiKey, { foreignKey: "apiKeyId", as: "apiKey" });

@@ -34,9 +34,14 @@ const router = express.Router();
  */
 const ticketController = require("../controllers/ticketController");
 const { authenticateApiKey, checkPermission } = require("../middlewares/auth");
+const { createApiKeyLimiter } = require("../middlewares/rateLimiter");
 
 // All ticket routes require API Key authentication
 router.use(authenticateApiKey);
+
+// Apply rate limiting per API Key
+const apiLimiter = createApiKeyLimiter(200, 15); // 200 requests per 15 mins
+router.use(apiLimiter);
 
 /**
  * @swagger

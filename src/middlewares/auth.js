@@ -1,7 +1,13 @@
 const jwt = require("jsonwebtoken");
 const ApiKey = require("../models/ApiKey");
+const crypto = require("crypto");
+const fs = require("fs");
+const path = require("path");
 
-// JWT Auth for Managers (to manage their API keys) - assumes managerId comes from an external JWT
+// Load Public Key for RS256
+const publicKey = fs.readFileSync(path.join(__dirname, "../../keys/public.pem"), "utf8");
+
+// JWT Auth for Managers using RS256
 const authenticateManager = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
@@ -10,22 +16,23 @@ const authenticateManager = async (req, res, next) => {
     }
 
     const token = authHeader.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET); // This JWT_SECRET should be shared with mad3oom.online or a public key used for verification
     
-    // Assuming the decoded token contains a managerId field
+    // Verify using RS256 and Public Key
+    const decoded = jwt.verify(token, publicKey, { algorithms: ["RS256"] }); 
+    
     if (!decoded.managerId) {
       return res.status(401).json({ error: "Unauthorized", message: "Invalid manager token" });
     }
 
-    req.manager = { id: decoded.managerId }; // Attach managerId to request object
+    req.manager = { id: decoded.managerId };
     next();
   } catch (error) {
-    console.error("Manager authentication error:", error.message);
+    console.error("JWT Auth Error:", error.message);
     return res.status(401).json({ error: "Unauthorized", message: "Invalid or expired manager token" });
   }
 };
 
-// API Key Auth for REST API Consumers
+// API Key Auth with Secure Hashing
 const authenticateApiKey = async (req, res, next) => {
   try {
     const apiKeyHeader = req.headers["x-api-key"];
@@ -33,20 +40,38 @@ const authenticateApiKey = async (req, res, next) => {
       return res.status(401).json({ error: "Unauthorized", message: "API Key is required" });
     }
 
+    // Secure extraction: prefix_actualkey
+    const [prefix, actualKey] = apiKeyHeader.includes('_') ? apiKeyHeader.split('_') : [null, apiKeyHeader];
+    
+    if (!prefix) {
+      return res.status(401).json({ error: "Unauthorized", message: "Invalid API Key format" });
+    }
+
+    const keyHash = ApiKey.hashKey(apiKeyHeader);
+
     const apiKey = await ApiKey.findOne({
-      where: { key: apiKeyHeader, isActive: true },
+      where: { 
+        keyHash, 
+        isActive: true,
+        keyPrefix: prefix
+      },
     });
 
     if (!apiKey) {
       return res.status(401).json({ error: "Unauthorized", message: "Invalid or inactive API Key" });
     }
 
+    // Check expiration
+    if (apiKey.expiresAt && new Date() > apiKey.expiresAt) {
+      return res.status(401).json({ error: "Unauthorized", message: "API Key has expired" });
+    }
+
     req.apiKey = apiKey;
-    req.manager = { id: apiKey.managerId }; // Multi-tenant isolation context
+    req.manager = { id: apiKey.managerId }; // Enforce Multi-tenant isolation context
     next();
   } catch (error) {
     console.error("API Key authentication error:", error.message);
-    return res.status(500).json({ error: "Internal Server Error", message: error.message });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

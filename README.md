@@ -4,16 +4,14 @@ Professional REST API for the Mad3oom Support Platform, designed for scalability
 
 ## 🚀 Features
 
-- **Multi-tenant Isolation**: Each manager from `mad3oom.online` has their own isolated data space.
-- **API Key Management**: Managers can create, update, and delete multiple API Keys with specific permissions (Read, Create, Update).
-- **Ticket System**: Full CRUD operations for support tickets.
-- **Webhooks**: Real-time notifications for ticket events (`ticket.created`, `ticket.updated`) with HMAC signing for security.
-- **Security**: 
-  - Rate Limiting
-  - Helmet for security headers
-  - API Key and Bearer Token authentication
-  - Data validation and sanitization
-- **Documentation**: Interactive Swagger documentation at `/api/docs`.
+- **Multi-tenant Isolation**: Strict data isolation enforced via Sequelize Scopes and Middlewares.
+- **Secure API Keys**: Hashed storage (SHA-256) with single-view display for production-grade security.
+- **Advanced Webhooks**: Queue-based delivery (BullMQ/Redis) with exponential backoff retry system and Dead Letter Queue (DLQ).
+- **Idempotency**: Support for `Idempotency-Key` header to prevent duplicate operations.
+- **Audit Trail**: Comprehensive logging of all actions (Create, Update, Delete) with old/new data snapshots.
+- **RS256 JWT**: Enhanced security using Public/Private key pairs for manager authentication.
+- **Soft Delete**: Paranoid mode enabled for data recovery and audit compliance.
+- **Production Rate Limiting**: Redis-backed rate limiting applied per API Key/Manager.
 
 ## 🛠 Tech Stack
 

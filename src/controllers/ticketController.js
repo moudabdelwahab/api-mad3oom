@@ -1,6 +1,7 @@
 const Ticket = require("../models/Ticket");
 const { validationResult } = require("express-validator");
 const webhookService = require("../services/webhookService");
+const auditService = require("../services/auditService");
 
 exports.createTicket = async (req, res) => {
   try {
@@ -11,9 +12,12 @@ exports.createTicket = async (req, res) => {
       description,
       priority,
       createdBy,
-      managerId: req.manager.id, // Enforce isolation
+      managerId: req.manager.id,
       apiKeyId: req.apiKey ? req.apiKey.id : null
     });
+
+    // Log the action
+    await auditService.log(req, 'TICKET_CREATE', 'Ticket', ticket.id, null, ticket.toJSON());
 
     // Trigger Webhook 'ticket.created'
     webhookService.trigger("ticket.created", req.manager.id, ticket);
@@ -27,7 +31,7 @@ exports.createTicket = async (req, res) => {
 exports.getTickets = async (req, res) => {
   try {
     const tickets = await Ticket.findAll({
-      where: { managerId: req.manager.id } // Enforce isolation
+      where: { managerId: req.manager.id }
     });
     res.json(tickets);
   } catch (error) {
@@ -62,6 +66,7 @@ exports.updateTicket = async (req, res) => {
       return res.status(404).json({ error: "Ticket not found" });
     }
 
+    const oldData = ticket.toJSON();
     await ticket.update({
       subject: subject || ticket.subject,
       description: description || ticket.description,
@@ -69,6 +74,9 @@ exports.updateTicket = async (req, res) => {
       priority: priority || ticket.priority,
       assignedTo: assignedTo || ticket.assignedTo
     });
+
+    // Log the action
+    await auditService.log(req, 'TICKET_UPDATE', 'Ticket', ticket.id, oldData, ticket.toJSON());
 
     // Trigger Webhook 'ticket.updated'
     webhookService.trigger("ticket.updated", req.manager.id, ticket);
@@ -81,13 +89,19 @@ exports.updateTicket = async (req, res) => {
 
 exports.deleteTicket = async (req, res) => {
   try {
-    const result = await Ticket.destroy({
+    const ticket = await Ticket.findOne({
       where: { id: req.params.id, managerId: req.manager.id }
     });
 
-    if (result === 0) {
+    if (!ticket) {
       return res.status(404).json({ error: "Ticket not found" });
     }
+
+    const oldData = ticket.toJSON();
+    await ticket.destroy(); // Soft delete because of paranoid: true
+
+    // Log the action
+    await auditService.log(req, 'TICKET_DELETE', 'Ticket', ticket.id, oldData, null);
 
     res.status(204).send();
   } catch (error) {

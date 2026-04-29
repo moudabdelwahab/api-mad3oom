@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
+const crypto = require("crypto");
 
 const ApiKey = sequelize.define("ApiKey", {
   id: {
@@ -8,13 +9,18 @@ const ApiKey = sequelize.define("ApiKey", {
     primaryKey: true,
   },
   managerId: {
-    type: DataTypes.STRING, // Assuming managerId comes as a string/UUID from mad3oom.online
+    type: DataTypes.STRING,
     allowNull: false,
+    index: true,
   },
-  key: {
+  keyHash: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
+  },
+  keyPrefix: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
@@ -37,6 +43,14 @@ const ApiKey = sequelize.define("ApiKey", {
     type: DataTypes.DATE,
     allowNull: true,
   },
+}, {
+  paranoid: true, // Enable Soft Delete
+  timestamps: true,
 });
+
+// Utility to hash the key
+ApiKey.hashKey = (key) => {
+  return crypto.createHash('sha256').update(key).digest('hex');
+};
 
 module.exports = ApiKey;

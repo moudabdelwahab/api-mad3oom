@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpecs = require('./config/swagger');
+const idempotency = require('./middlewares/idempotency');
 require('dotenv').config();
 
 const app = express();
@@ -26,10 +27,14 @@ app.use('/api/', limiter);
 // Documentation
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
+// Global Middlewares
+app.use(idempotency);
+
 // Routes
 app.use('/api/v1/api-keys', require('./routes/authRoutes'));
 app.use('/api/v1/tickets', require('./routes/ticketRoutes'));
 app.use('/api/v1/webhooks', require('./routes/webhookRoutes'));
+app.use('/api/v1/audit', require('./routes/auditRoutes'));
 
 // Health Check
 app.get('/health', (req, res) => {

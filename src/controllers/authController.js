@@ -3,25 +3,33 @@ const ApiKey = require("../models/ApiKey");
 
 exports.createApiKey = async (req, res) => {
   try {
-    const { name, permissions } = req.body;
-    const key = crypto.randomBytes(32).toString("hex");
+    const { name, permissions, expiresAt } = req.body;
     
-    // managerId comes from the authenticated manager via JWT from mad3oom.online
+    // Generate a secure random key
+    const prefix = "mad"; // mad3oom prefix
+    const randomPart = crypto.randomBytes(24).toString("hex");
+    const fullKey = `${prefix}_${randomPart}`;
+    
+    // Store only the hash and prefix
+    const keyHash = ApiKey.hashKey(fullKey);
+    
     const apiKey = await ApiKey.create({
-      key,
+      keyHash,
+      keyPrefix: prefix,
       name,
       permissions: permissions || { read: true, create: false, update: false },
-      managerId: req.manager.id
+      managerId: req.manager.id,
+      expiresAt: expiresAt || null
     });
 
     res.status(201).json({ 
-      message: "API Key created successfully",
+      message: "API Key created successfully. Save this key, it will NOT be shown again.",
       apiKey: {
         id: apiKey.id,
         name: apiKey.name,
-        key: key, // Only show once for security
+        key: fullKey, // ONLY SHOWN ONCE
         permissions: apiKey.permissions,
-        managerId: apiKey.managerId
+        expiresAt: apiKey.expiresAt
       }
     });
   } catch (error) {
@@ -31,10 +39,9 @@ exports.createApiKey = async (req, res) => {
 
 exports.listApiKeys = async (req, res) => {
   try {
-    // managerId comes from the authenticated manager via JWT from mad3oom.online
     const keys = await ApiKey.findAll({ 
       where: { managerId: req.manager.id },
-      attributes: ["id", "name", "permissions", "isActive", "createdAt", "managerId"]
+      attributes: ["id", "name", "permissions", "isActive", "createdAt", "expiresAt", "keyPrefix"]
     });
     res.json(keys);
   } catch (error) {
@@ -48,18 +55,18 @@ exports.updateApiKey = async (req, res) => {
     const { name, permissions, isActive } = req.body;
 
     const apiKey = await ApiKey.findOne({
-      where: { id, managerId: req.manager.id } // Ensure manager owns the API key
+      where: { id, managerId: req.manager.id }
     });
 
     if (!apiKey) {
-      return res.status(404).json({ error: "API Key not found or you don't have permission to update it" });
+      return res.status(404).json({ error: "API Key not found" });
     }
 
-    apiKey.name = name || apiKey.name;
-    apiKey.permissions = permissions || apiKey.permissions;
-    apiKey.isActive = typeof isActive === 'boolean' ? isActive : apiKey.isActive;
-
-    await apiKey.save();
+    await apiKey.update({
+      name: name || apiKey.name,
+      permissions: permissions || apiKey.permissions,
+      isActive: typeof isActive === 'boolean' ? isActive : apiKey.isActive
+    });
 
     res.json({ 
       message: "API Key updated successfully",
@@ -67,8 +74,7 @@ exports.updateApiKey = async (req, res) => {
         id: apiKey.id,
         name: apiKey.name,
         permissions: apiKey.permissions,
-        isActive: apiKey.isActive,
-        managerId: apiKey.managerId
+        isActive: apiKey.isActive
       }
     });
   } catch (error) {
@@ -79,16 +85,15 @@ exports.updateApiKey = async (req, res) => {
 exports.deleteApiKey = async (req, res) => {
   try {
     const { id } = req.params;
-
     const result = await ApiKey.destroy({
-      where: { id, managerId: req.manager.id } // Ensure manager owns the API key
+      where: { id, managerId: req.manager.id }
     });
 
     if (result === 0) {
-      return res.status(404).json({ error: "API Key not found or you don't have permission to delete it" });
+      return res.status(404).json({ error: "API Key not found" });
     }
 
-    res.status(204).send(); // No content on successful deletion
+    res.status(204).send();
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
