@@ -18,7 +18,8 @@ Professional REST API for the Mad3oom Support Platform, designed for scalability
 ## 🛠 Tech Stack
 
 - **Node.js & Express**
-- **Sequelize (ORM)** with SQLite (default) or any SQL database.
+- **Sequelize (ORM)** with **Supabase (PostgreSQL)**.
+- **Vercel Ready**: Optimized for deployment on Vercel as Serverless Functions.
 - **Swagger UI** for API documentation.
 - **Axios** for Webhook delivery.
 
@@ -37,7 +38,7 @@ Create a `.env` file based on the provided example:
 ```env
 PORT=3000
 NODE_ENV=development
-DB_STORAGE=./database.sqlite
+DATABASE_URL=postgresql://postgres:[PASSWORD]@db.[REF].supabase.co:5432/postgres
 JWT_SECRET=your_shared_jwt_secret_with_mad3oom_online
 API_KEY_SECRET=mad3oom_api_key_salt
 WEBHOOK_SECRET=mad3oom_webhook_secret
