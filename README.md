@@ -1,232 +1,82 @@
-# صالة الاجتماعات - منصة مدعوم
+# Mad3oom REST API (v1)
 
-منصة اجتماعات احترافية وآمنة عبر الإنترنت مدمجة مع **Jitsi Meet API**، مع تصميم متناسق مع منصة **mad3oom.online**.
+Professional REST API for the Mad3oom Support Platform, designed for scalability and multi-tenant isolation.
 
-## المميزات الرئيسية
+## 🚀 Features
 
-✅ **فيديو عالي الجودة** - دعم كامل لمكالمات الفيديو بدقة عالية
+- **Multi-tenant Isolation**: Each manager from `mad3oom.online` has their own isolated data space.
+- **API Key Management**: Managers can create, update, and delete multiple API Keys with specific permissions (Read, Create, Update).
+- **Ticket System**: Full CRUD operations for support tickets.
+- **Webhooks**: Real-time notifications for ticket events (`ticket.created`, `ticket.updated`) with HMAC signing for security.
+- **Security**: 
+  - Rate Limiting
+  - Helmet for security headers
+  - API Key and Bearer Token authentication
+  - Data validation and sanitization
+- **Documentation**: Interactive Swagger documentation at `/api/docs`.
 
-✅ **صوت واضح** - تقنيات متقدمة لتحسين جودة الصوت
+## 🛠 Tech Stack
 
-✅ **مشاركة الشاشة** - شارك شاشتك مع المشاركين الآخرين
+- **Node.js & Express**
+- **Sequelize (ORM)** with SQLite (default) or any SQL database.
+- **Swagger UI** for API documentation.
+- **Axios** for Webhook delivery.
 
-✅ **آمن وموثوق** - تشفير نهاية إلى نهاية لجميع الاتصالات
+## 🏁 Getting Started
 
-✅ **تصميم استجابي** - يعمل بشكل مثالي على جميع الأجهزة
+### 1. Installation
 
-✅ **دعم اللغة العربية** - واجهة كاملة باللغة العربية
-
-✅ **وضع مظلم/فاتح** - تبديل سلس بين الأوضاع
-
-## البدء السريع
-
-### المتطلبات
-
-- متصفح ويب حديث (Chrome, Firefox, Safari, Edge)
-- اتصال إنترنت مستقر
-- كاميرا وميكروفون (اختياري)
-
-### التثبيت
-
-1. استنساخ المستودع:
 ```bash
-git clone https://github.com/moudabdelwahab/mad3oom.git
-cd mad3oom
+pnpm install
 ```
 
-2. فتح الملف في متصفح:
+### 2. Configuration
+
+Create a `.env` file based on the provided example:
+
+```env
+PORT=3000
+NODE_ENV=development
+DB_STORAGE=./database.sqlite
+JWT_SECRET=your_shared_jwt_secret_with_mad3oom_online
+API_KEY_SECRET=mad3oom_api_key_salt
+WEBHOOK_SECRET=mad3oom_webhook_secret
+```
+
+### 3. Running the Server
+
 ```bash
-# يمكنك فتح الملف مباشرة
-open index.html
+# Development mode
+pnpm run dev
 
-# أو استخدام خادم محلي
-python -m http.server 8000
-# ثم زيارة http://localhost:8000
+# Production mode
+pnpm start
 ```
 
-### الاستخدام
+## 📖 API Documentation
 
-#### إنشاء اجتماع جديد
+Once the server is running, visit:
+`http://localhost:3000/api/docs` or `https://api.mad3oom.online/api/docs`
 
-1. افتح الصفحة الرئيسية
-2. ادخل اسم الاجتماع في حقل "إنشاء اجتماع جديد"
-3. اضغط على زر "إنشاء اجتماع"
-4. سيتم نقلك إلى الاجتماع الجديد تلقائياً
+## 🔗 Integration with mad3oom.online
 
-#### الانضمام إلى اجتماع موجود
+This API expects a JWT token issued by `mad3oom.online` for administrative tasks (like managing API keys). The token must contain a `managerId` claim.
 
-استخدم الرابط المشترك مع الآخرين:
+- **Authentication Header**: `Authorization: Bearer <JWT_TOKEN>`
+- **API Consumption Header**: `x-api-key: <YOUR_API_KEY>`
+
+## 📝 Example: Create a Ticket via API
+
+```bash
+curl -X POST https://api.mad3oom.online/api/v1/tickets \
+  -H "x-api-key: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "subject": "System Outage",
+    "description": "Users are unable to access the dashboard",
+    "priority": "high"
+  }'
 ```
-https://meet.mad3oom.online/?room=اسم-الاجتماع
-```
-
-#### نسخ رابط الاجتماع
-
-1. اضغط على زر "نسخ الرابط" في بطاقة معلومات الاجتماع
-2. شارك الرابط مع المشاركين الآخرين
-
-## البنية الأساسية للملفات
-
-```
-mad3oom/
-├── index.html              # الصفحة الرئيسية
-├── script.js               # الدوال المساعدة والعامة
-├── styles.css              # التنسيقات الأساسية
-├── color-system.css        # نظام الألوان
-├── robot.css               # تنسيقات إضافية
-├── theme-manager.js        # إدارة الوضع المظلم/الفاتح
-├── favicon.ico             # أيقونة الموقع
-├── logo.svg                # شعار المنصة
-├── assets/                 # الصور والموارد
-│   ├── images/
-│   │   ├── logo.png
-│   │   └── ...
-│   ├── js/
-│   └── components/
-└── README.md               # هذا الملف
-```
-
-## التكوين والخيارات
-
-### تخصيص إعدادات Jitsi Meet
-
-يمكنك تخصيص إعدادات Jitsi Meet من خلال تعديل الخيارات في ملف `index.html`:
-
-```javascript
-const options = {
-    roomName: roomName,
-    width: '100%',
-    height: '100%',
-    parentNode: document.querySelector('#jitsi-container'),
-    configOverwrite: {
-        startWithAudioMuted: false,
-        startWithVideoMuted: false,
-        disableSimulcast: false,
-        enableWelcomePage: true,
-        enableClosePage: true
-    },
-    interfaceConfigOverwrite: {
-        DISABLE_DOMINANT_SPEAKER_INDICATOR: false,
-        TOOLBAR_BUTTONS: [
-            'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-            'fodeviceselection', 'hangup', 'profile', 'chat', 'recording',
-            'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
-            'videoquality', 'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts',
-            'tileview', 'download', 'help', 'mute-everyone', 'e2ee'
-        ],
-        DEFAULT_LANGUAGE: 'ar'
-    }
-};
-```
-
-### الخيارات المتاحة
-
-| الخيار | النوع | الوصف |
-|--------|-------|-------|
-| `roomName` | string | اسم الاجتماع |
-| `width` | string/number | عرض الإطار |
-| `height` | string/number | ارتفاع الإطار |
-| `startWithAudioMuted` | boolean | بدء الاجتماع بالميكروفون مكتوم |
-| `startWithVideoMuted` | boolean | بدء الاجتماع بالكاميرا مكتومة |
-| `enableWelcomePage` | boolean | عرض صفحة الترحيب |
-| `DEFAULT_LANGUAGE` | string | اللغة الافتراضية (ar للعربية) |
-
-## واجهات برمجية (API)
-
-### الدوال الأساسية
-
-#### `initJitsiMeet(roomName)`
-تهيئة منصة Jitsi Meet برقم الاجتماع المحدد.
-
-```javascript
-initJitsiMeet('my-meeting-room');
-```
-
-#### `createNewRoom(event)`
-إنشاء اجتماع جديد من خلال نموذج الإدخال.
-
-```javascript
-createNewRoom(event);
-```
-
-#### `updateRoomInfo(roomName)`
-تحديث معلومات الاجتماع المعروضة.
-
-```javascript
-updateRoomInfo('my-meeting-room');
-```
-
-#### `copyToClipboard(text)`
-نسخ النص إلى الحافظة.
-
-```javascript
-copyToClipboard('https://meet.mad3oom.online/?room=my-room');
-```
-
-### معالجات الأحداث
-
-يتم تشغيل الأحداث التالية تلقائياً:
-
-- `videoConferenceJoined` - عند انضمام المستخدم للاجتماع
-- `videoConferenceLeft` - عند مغادرة المستخدم للاجتماع
-- `participantJoined` - عند انضمام مشارك جديد
-- `participantLeft` - عند مغادرة مشارك
-- `displayNameChange` - عند تغيير اسم العرض
-- `contentSharingStarted` - عند بدء مشاركة الشاشة
-- `contentSharingEnded` - عند إنهاء مشاركة الشاشة
-
-## الدعم والمساعدة
-
-### المشاكل الشائعة
-
-**المشكلة:** لا تظهر الكاميرا أو الميكروفون
-- **الحل:** تأكد من منح الأذونات للمتصفح للوصول إلى الكاميرا والميكروفون
-
-**المشكلة:** الاتصال بطيء أو متقطع
-- **الحل:** تحقق من سرعة الإنترنت لديك، وحاول إغلاق التطبيقات الأخرى
-
-**المشكلة:** الصوت غير واضح
-- **الحل:** تأكد من نظافة الميكروفون، وجرب جهاز إدخال صوت مختلف
-
-### الإبلاغ عن المشاكل
-
-إذا واجهت أي مشاكل، يرجى فتح issue على GitHub:
-[GitHub Issues](https://github.com/moudabdelwahab/mad3oom/issues)
-
-## التطوير والمساهمة
-
-### متطلبات التطوير
-
-- محرر نصوص (VS Code, Sublime, إلخ)
-- معرفة بـ HTML, CSS, JavaScript
-- فهم أساسي لـ Jitsi Meet API
-
-### المساهمة
-
-نرحب بالمساهمات! يرجى:
-
-1. عمل Fork للمستودع
-2. إنشاء فرع جديد (`git checkout -b feature/amazing-feature`)
-3. Commit التغييرات (`git commit -m 'Add amazing feature'`)
-4. Push إلى الفرع (`git push origin feature/amazing-feature`)
-5. فتح Pull Request
-
-## الترخيص
-
-هذا المشروع مرخص تحت [MIT License](LICENSE)
-
-## الشكر والتقدير
-
-شكر خاص لـ:
-- فريق [Jitsi](https://jitsi.org/) لتوفير منصة الاجتماعات المفتوحة المصدر
-- فريق [mad3oom.online](https://mad3oom.online) لتوفير التصميم الأساسي
-
-## معلومات الاتصال
-
-- **الموقع:** [https://meet.mad3oom.online](https://meet.mad3oom.online)
-- **المنصة الأم:** [https://mad3oom.online](https://mad3oom.online)
-- **البريد الإلكتروني:** contact@mad3oom.online
 
 ---
-
-تم التطوير بـ ❤️ من قبل فريق منصة مدعوم
+Designed for **Mad3oom Support Platform**.
