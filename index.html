@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة مطوري مدعوم - Teams API Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo">مدعوم</div>
+                <p class="platform-name">منصة المطورين</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#home" class="nav-item active" data-section="home">
+                    <span class="icon">🏠</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="#documentation" class="nav-item" data-section="documentation">
+                    <span class="icon">📚</span>
+                    <span>التوثيق</span>
+                </a>
+                <a href="#tickets" class="nav-item" data-section="tickets">
+                    <span class="icon">🎫</span>
+                    <span>التذاكر</span>
+                </a>
+                <a href="#api-keys" class="nav-item" data-section="api-keys">
+                    <span class="icon">🔑</span>
+                    <span>مفاتيح API</span>
+                </a>
+                <a href="#webhooks" class="nav-item" data-section="webhooks">
+                    <span class="icon">🪝</span>
+                    <span>الويب هوك</span>
+                </a>
+                <a href="#examples" class="nav-item" data-section="examples">
+                    <span class="icon">💻</span>
+                    <span>أمثلة برمجية</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p class="version">الإصدار 1.0</p>
+                <p class="status">الحالة: <span class="status-badge active">نشط</span></p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="content-section active">
+                <div class="hero">
+                    <h1>مرحباً بك في منصة مطوري مدعوم</h1>
+                    <p class="subtitle">نظام API متكامل لإدارة فرق العمل والتذاكر والويب هوك</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">👥</div>
+                            <h3>إدارة الفرق</h3>
+                            <p>نظام متقدم لإدارة فرق العمل والأعضاء والأدوار</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎫</div>
+                            <h3>نظام التذاكر</h3>
+                            <p>إنشاء وإدارة التذاكر مع الأولويات والحالات</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🪝</div>
+                            <h3>الويب هوك</h3>
+                            <p>تلقي إشعارات فورية عند حدوث أحداث مهمة</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔐</div>
+                            <h3>أمان عالي</h3>
+                            <p>مصادقة JWT وتوقيع الويب هوك والتشفير</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="navigateTo('documentation')">ابدأ الآن</button>
+                        <button class="btn btn-secondary" onclick="navigateTo('api-keys')">إدارة المفاتيح</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Documentation Section -->
+            <section id="documentation" class="content-section">
+                <h2>توثيق API</h2>
+                
+                <div class="doc-tabs">
+                    <button class="tab-btn active" onclick="switchTab('overview')">نظرة عامة</button>
+                    <button class="tab-btn" onclick="switchTab('auth')">المصادقة</button>
+                    <button class="tab-btn" onclick="switchTab('tickets')">التذاكر</button>
+                    <button class="tab-btn" onclick="switchTab('webhooks')">الويب هوك</button>
+                    <button class="tab-btn" onclick="switchTab('errors')">الأخطاء</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="overview" class="tab-pane active">
+                        <h3>نظرة عامة على API</h3>
+                        <p>نظام API متكامل يوفر إمكانيات شاملة لإدارة فرق العمل والتذاكر والويب هوك. يدعم النظام المصادقة عبر JWT أو مفاتيح API مع نظام صلاحيات متقدم.</p>
+                        
+                        <div class="info-box">
+                            <strong>Base URL:</strong>
+                            <code>https://api.mad3oom.online/api/v1</code>
+                        </div>
+
+                        <h4>الميزات الرئيسية:</h4>
+                        <ul class="feature-list">
+                            <li>إدارة فرق العمل والأعضاء والأدوار</li>
+                            <li>نظام تذاكر متقدم مع الأولويات والحالات</li>
+                            <li>الويب هوك مع التوقيع والتحقق من الأمان</li>
+                            <li>سجلات API شاملة لكل عملية</li>
+                            <li>مفاتيح API مع صلاحيات قابلة للتخصيص</li>
+                        </ul>
+                    </div>
+
+                    <div id="auth" class="tab-pane">
+                        <h3>المصادقة (Authentication)</h3>
+                        <p>يدعم النظام طريقتين للمصادقة: JWT Tokens و API Keys. اختر الطريقة المناسبة لحالتك.</p>
+                        
+                        <h4>1. JWT Authentication</h4>
+                        <div class="code-block">
+                            <div class="code-header">HTTP Headers</div>
+                            <pre><code>Authorization: Bearer &lt;JWT_TOKEN&gt;
+Content-Type: application/json</code></pre>
+                        </div>
+
+                        <h4>2. API Key Authentication</h4>
+                        <div class="code-block">
+                            <div class="code-header">HTTP Headers</div>
+                            <pre><code>X-API-Key: mad_&lt;random_string&gt;
+Content-Type: application/json</code></pre>
+                        </div>
+
+                        <h4>الصلاحيات (Permissions):</h4>
+                        <table class="permissions-table">
+                            <thead>
+                                <tr>
+                                    <th>الصلاحية</th>
+                                    <th>الوصف</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>read</code></td>
+                                    <td>قراءة البيانات</td>
+                                </tr>
+                                <tr>
+                                    <td><code>create</code></td>
+                                    <td>إنشاء بيانات جديدة</td>
+                                </tr>
+                                <tr>
+                                    <td><code>update</code></td>
+                                    <td>تحديث البيانات</td>
+                                </tr>
+                                <tr>
+                                    <td><code>delete</code></td>
+                                    <td>حذف البيانات</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="tickets" class="tab-pane">
+                        <h3>نقاط الاتصال - التذاكر (Ticket Endpoints)</h3>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <code>/tickets</code>
+                            </div>
+                            <p>إنشاء تذكرة جديدة</p>
+                            <h5>المعاملات:</h5>
+                            <table class="params-table">
+                                <thead>
+                                    <tr>
+                                        <th>المعامل</th>
+                                        <th>النوع</th>
+                                        <th>الوصف</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>subject</code></td>
+                                        <td>string</td>
+                                        <td>عنوان التذكرة</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>description</code></td>
+                                        <td>string</td>
+                                        <td>وصف التذكرة</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>priority</code></td>
+                                        <td>string</td>
+                                        <td>high|medium|low</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>created_by</code></td>
+                                        <td>string</td>
+                                        <td>البريد الإلكتروني للمنشئ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <code>/tickets</code>
+                            </div>
+                            <p>جلب جميع التذاكر مع التصفية والترقيم</p>
+                            <div class="code-block">
+                                <div class="code-header">Query Parameters</div>
+                                <pre><code>?page=1&limit=20&status=open&priority=high</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <code>/tickets/{id}</code>
+                            </div>
+                            <p>جلب تذكرة واحدة مع جميع الردود</p>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <code>/tickets/{id}/reply</code>
+                            </div>
+                            <p>إضافة رد على التذكرة</p>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method patch">PATCH</span>
+                                <code>/tickets/{id}/status</code>
+                            </div>
+                            <p>تحديث حالة التذكرة</p>
+                        </div>
+                    </div>
+
+                    <div id="webhooks" class="tab-pane">
+                        <h3>الويب هوك (Webhooks)</h3>
+                        <p>الويب هوك تسمح لتطبيقك بتلقي إشعارات فورية عند حدوث أحداث مهمة. كل حدث يتم توقيعه بـ HMAC-SHA256 للتحقق من الأمان.</p>
+
+                        <h4>أنواع الأحداث:</h4>
+                        <ul class="feature-list">
+                            <li><code>ticket.created</code> - عند إنشاء تذكرة جديدة</li>
+                            <li><code>ticket.updated</code> - عند تحديث التذكرة</li>
+                            <li><code>ticket.deleted</code> - عند حذف التذكرة</li>
+                            <li><code>ticket.replied</code> - عند إضافة رد على التذكرة</li>
+                            <li><code>api_key.created</code> - عند إنشاء مفتاح API</li>
+                            <li><code>api_key.revoked</code> - عند إلغاء مفتاح API</li>
+                        </ul>
+
+                        <h4>رؤوس الويب هوك:</h4>
+                        <div class="code-block">
+                            <div class="code-header">HTTP Headers</div>
+                            <pre><code>X-Mad3oom-Event: ticket.created
+X-Mad3oom-Timestamp: 1620000000
+X-Mad3oom-Signature: sha256=&lt;hmac_signature&gt;</code></pre>
+                        </div>
+
+                        <h4>التحقق من التوقيع (Node.js):</h4>
+                        <div class="code-block">
+                            <div class="code-header">JavaScript</div>
+                            <pre><code>const crypto = require('crypto');
+
+function verifyWebhookSignature(payload, signature, secret) {
+    const hash = crypto
+        .createHmac('sha256', secret)
+        .update(JSON.stringify(payload))
+        .digest('hex');
+    
+    return hash === signature;
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div id="errors" class="tab-pane">
+                        <h3>معالجة الأخطاء</h3>
+                        <p>تستخدم API أكواد HTTP القياسية للإشارة إلى حالة الطلب:</p>
+                        
+                        <table class="errors-table">
+                            <thead>
+                                <tr>
+                                    <th>الكود</th>
+                                    <th>المعنى</th>
+                                    <th>الحل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>400</code></td>
+                                    <td>طلب غير صحيح</td>
+                                    <td>تحقق من صحة البيانات المرسلة</td>
+                                </tr>
+                                <tr>
+                                    <td><code>401</code></td>
+                                    <td>غير مصرح</td>
+                                    <td>تحقق من المفتاح أو الـ JWT</td>
+                                </tr>
+                                <tr>
+                                    <td><code>403</code></td>
+                                    <td>تم رفض الوصول</td>
+                                    <td>تحقق من الصلاحيات</td>
+                                </tr>
+                                <tr>
+                                    <td><code>404</code></td>
+                                    <td>غير موجود</td>
+                                    <td>تحقق من معرف المورد</td>
+                                </tr>
+                                <tr>
+                                    <td><code>429</code></td>
+                                    <td>تم تجاوز حد الطلبات</td>
+                                    <td>انتظر قبل إرسال طلبات جديدة</td>
+                                </tr>
+                                <tr>
+                                    <td><code>500</code></td>
+                                    <td>خطأ داخلي</td>
+                                    <td>حاول لاحقاً</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tickets Management Section -->
+            <section id="tickets" class="content-section">
+                <h2>إدارة التذاكر</h2>
+                <p>إنشاء وإدارة التذاكر مع تتبع الحالة والأولوية والردود.</p>
+                
+                <div class="tickets-container">
+                    <div class="tickets-header">
+                        <button class="btn btn-primary" onclick="showCreateTicketModal()">+ إنشاء تذكرة جديدة</button>
+                    </div>
+
+                    <div id="tickets-list" class="tickets-list">
+                        <div class="empty-state">
+                            <p>لا توجد تذاكر حالياً</p>
+                            <p class="small">انقر على زر "إنشاء تذكرة جديدة" للبدء</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Ticket Modal -->
+                <div id="createTicketModal" class="modal hidden">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>إنشاء تذكرة جديدة</h3>
+                            <button class="close-btn" onclick="closeCreateTicketModal()">&times;</button>
+                        </div>
+                        <form id="createTicketForm" onsubmit="handleCreateTicket(event)">
+                            <div class="form-group">
+                                <label for="ticketSubject">العنوان</label>
+                                <input type="text" id="ticketSubject" placeholder="عنوان التذكرة" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ticketDescription">الوصف</label>
+                                <textarea id="ticketDescription" placeholder="وصف التذكرة" rows="4" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ticketPriority">الأولوية:</label>
+                                <select id="ticketPriority">
+                                    <option value="low">منخفضة</option>
+                                    <option value="medium" selected>متوسطة</option>
+                                    <option value="high">عالية</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ticketCreatedBy">البريد الإلكتروني:</label>
+                                <input type="email" id="ticketCreatedBy" placeholder="your@example.com" required>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">إنشاء التذكرة</button>
+                                <button type="button" class="btn btn-secondary" onclick="closeCreateTicketModal()">إلغاء</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API Keys Management Section -->
+            <section id="api-keys" class="content-section">
+                <h2>إدارة مفاتيح API</h2>
+                
+                <div class="api-keys-container">
+                    <div class="keys-header">
+                        <p class="info-text">إدارة مفاتيح API الخاصة بك وتحديد الصلاحيات والانتهاء</p>
+                        <button class="btn btn-primary" onclick="showCreateKeyModal()">+ إنشاء مفتاح جديد</button>
+                    </div>
+
+                    <div id="keys-list" class="keys-list">
+                        <div class="empty-state">
+                            <p>لا توجد مفاتيح API حالياً</p>
+                            <p class="small">انقر على زر "إنشاء مفتاح جديد" للبدء</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Key Modal -->
+                <div id="createKeyModal" class="modal hidden">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>إنشاء مفتاح API جديد</h3>
+                            <button class="close-btn" onclick="closeCreateKeyModal()">&times;</button>
+                        </div>
+                        <form id="createKeyForm" onsubmit="handleCreateKey(event)">
+                            <div class="form-group">
+                                <label for="keyName">اسم المفتاح</label>
+                                <input type="text" id="keyName" placeholder="مثال: My App API Key" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>الصلاحيات المطلوبة:</label>
+                                <div class="permissions-checkboxes">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="permissions" value="read" checked>
+                                        <span>قراءة (read)</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="permissions" value="create">
+                                        <span>إنشاء (create)</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="permissions" value="update">
+                                        <span>تحديث (update)</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="permissions" value="delete">
+                                        <span>حذف (delete)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="keyExpires">تاريخ الانتهاء:</label>
+                                <input type="date" id="keyExpires">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">إنشاء المفتاح</button>
+                                <button type="button" class="btn btn-secondary" onclick="closeCreateKeyModal()">إلغاء</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Webhooks Management Section -->
+            <section id="webhooks" class="content-section">
+                <h2>إدارة الويب هوك</h2>
+                
+                <div class="webhooks-container">
+                    <div class="webhooks-header">
+                        <p class="info-text">إنشاء وإدارة الويب هوك لتلقي إشعارات الأحداث</p>
+                        <button class="btn btn-primary" onclick="showCreateWebhookModal()">+ إنشاء ويب هوك جديد</button>
+                    </div>
+
+                    <div id="webhooks-list" class="webhooks-list">
+                        <div class="empty-state">
+                            <p>لا توجد ويب هوك حالياً</p>
+                            <p class="small">انقر على زر "إنشاء ويب هوك جديد" للبدء</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Webhook Modal -->
+                <div id="createWebhookModal" class="modal hidden">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>إنشاء ويب هوك جديد</h3>
+                            <button class="close-btn" onclick="closeCreateWebhookModal()">&times;</button>
+                        </div>
+                        <form id="createWebhookForm" onsubmit="handleCreateWebhook(event)">
+                            <div class="form-group">
+                                <label for="webhookUrl">رابط الويب هوك</label>
+                                <input type="url" id="webhookUrl" placeholder="https://example.com/webhook" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>الأحداث المراقبة:</label>
+                                <div class="events-checkboxes">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="events" value="ticket.created" checked>
+                                        <span>إنشاء تذكرة</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="events" value="ticket.updated">
+                                        <span>تحديث التذكرة</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="events" value="ticket.deleted">
+                                        <span>حذف التذكرة</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="events" value="ticket.replied">
+                                        <span>رد على التذكرة</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="webhookSecret">السر (Secret):</label>
+                                <input type="text" id="webhookSecret" placeholder="سر التوقيع" required>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">إنشاء الويب هوك</button>
+                                <button type="button" class="btn btn-secondary" onclick="closeCreateWebhookModal()">إلغاء</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Code Examples Section -->
+            <section id="examples" class="content-section">
+                <h2>أمثلة برمجية</h2>
+                
+                <div class="examples-tabs">
+                    <button class="example-tab active" onclick="switchExample('javascript')">JavaScript</button>
+                    <button class="example-tab" onclick="switchExample('python')">Python</button>
+                    <button class="example-tab" onclick="switchExample('curl')">cURL</button>
+                </div>
+
+                <div class="examples-content">
+                    <div id="javascript" class="example-pane active">
+                        <h3>JavaScript - إنشاء تذكرة</h3>
+                        <div class="code-block">
+                            <div class="code-header">JavaScript</div>
+                            <pre><code>const API_KEY = 'mad_your_api_key_here';
+const BASE_URL = 'https://api.mad3oom.online/api/v1';
+
+async function createTicket(subject, description, priority) {
+    try {
+        const response = await fetch(`${BASE_URL}/tickets`, {
+            method: 'POST',
+            headers: {
+                'X-API-Key': API_KEY,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                subject,
+                description,
+                priority,
+                created_by: 'user@example.com'
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Ticket created:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// الاستخدام
+createTicket('مشكلة في التطبيق', 'التطبيق لا يعمل', 'high');</code></pre>
+                        </div>
+                    </div>
+
+                    <div id="python" class="example-pane">
+                        <h3>Python - إنشاء تذكرة</h3>
+                        <div class="code-block">
+                            <div class="code-header">Python</div>
+                            <pre><code>import requests
+import json
+
+API_KEY = 'mad_your_api_key_here'
+BASE_URL = 'https://api.mad3oom.online/api/v1'
+
+def create_ticket(subject, description, priority):
+    headers = {
+        'X-API-Key': API_KEY,
+        'Content-Type': 'application/json'
+    }
+    
+    payload = {
+        'subject': subject,
+        'description': description,
+        'priority': priority,
+        'created_by': 'user@example.com'
+    }
+    
+    try:
+        response = requests.post(
+            f'{BASE_URL}/tickets',
+            headers=headers,
+            json=payload
+        )
+        
+        if response.status_code == 201:
+            data = response.json()
+            print(f'Ticket created: {data}')
+            return data
+        else:
+            print(f'Error: {response.status_code}')
+            
+    except requests.exceptions.RequestException as e:
+        print(f'Request Error: {e}')
+
+# الاستخدام
+create_ticket('مشكلة في التطبيق', 'التطبيق لا يعمل', 'high')</code></pre>
+                        </div>
+                    </div>
+
+                    <div id="curl" class="example-pane">
+                        <h3>cURL - إنشاء تذكرة</h3>
+                        <div class="code-block">
+                            <div class="code-header">Bash</div>
+                            <pre><code>curl -X POST https://api.mad3oom.online/api/v1/tickets \
+  -H "X-API-Key: mad_your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "subject": "مشكلة في التطبيق",
+    "description": "التطبيق لا يعمل",
+    "priority": "high",
+    "created_by": "user@example.com"
+  }'</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

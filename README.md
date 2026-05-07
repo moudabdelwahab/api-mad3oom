@@ -1,81 +1,253 @@
-# Mad3oom REST API (v1)
+# منصة مطوري مدعوم - Teams API Developer Platform
 
-Professional REST API for the Mad3oom Support Platform, designed for scalability and multi-tenant isolation.
+منصة ويب متكاملة لإدارة واستخدام API نظام فرق العمل في منصة مدعوم. توفر المنصة واجهة رسومية سهلة الاستخدام لإدارة التذاكر والمفاتيح والويب هوك.
 
-## 🚀 Features
+## 🎯 الميزات الرئيسية
 
-- **Multi-tenant Isolation**: Strict data isolation enforced via Sequelize Scopes and Middlewares.
-- **Secure API Keys**: Hashed storage (SHA-256) with single-view display for production-grade security.
-- **Advanced Webhooks**: Queue-based delivery (BullMQ/Redis) with exponential backoff retry system and Dead Letter Queue (DLQ).
-- **Idempotency**: Support for `Idempotency-Key` header to prevent duplicate operations.
-- **Audit Trail**: Comprehensive logging of all actions (Create, Update, Delete) with old/new data snapshots.
-- **RS256 JWT**: Enhanced security using Public/Private key pairs for manager authentication.
-- **Soft Delete**: Paranoid mode enabled for data recovery and audit compliance.
-- **Production Rate Limiting**: Redis-backed rate limiting applied per API Key/Manager.
+- **إدارة التذاكر**: إنشاء وإدارة التذاكر مع الأولويات والحالات المختلفة
+- **إدارة مفاتيح API**: إنشاء وإدارة مفاتيح API مع صلاحيات قابلة للتخصيص
+- **إدارة الويب هوك**: إنشاء وإدارة الويب هوك لتلقي إشعارات الأحداث
+- **توثيق شامل**: توثيق كامل لجميع نقاط الاتصال والأمثلة البرمجية
+- **أمثلة برمجية**: أمثلة جاهزة بلغات JavaScript و Python و cURL
+- **تصميم متجاوب**: واجهة تعمل على جميع الأجهزة والشاشات
 
-## 🛠 Tech Stack
+## 📋 المتطلبات
 
-- **Node.js & Express**
-- **Sequelize (ORM)** with **Supabase (PostgreSQL)**.
-- **Vercel Ready**: Optimized for deployment on Vercel as Serverless Functions.
-- **Swagger UI** for API documentation.
-- **Axios** for Webhook delivery.
+- متصفح ويب حديث (Chrome, Firefox, Safari, Edge)
+- اتصال بالإنترنت
+- مفتاح API أو JWT Token للوصول إلى API
 
-## 🏁 Getting Started
+## 🚀 البدء السريع
 
-### 1. Installation
+### 1. الوصول إلى المنصة
 
-```bash
-pnpm install
+افتح المنصة من خلال الرابط:
+```
+https://api.mad3oom.online
 ```
 
-### 2. Configuration
+### 2. تكوين المصادقة
 
-Create a `.env` file based on the provided example:
+قبل استخدام المنصة، يجب تكوين طريقة المصادقة:
 
-```env
-PORT=3000
-NODE_ENV=development
-DATABASE_URL=postgresql://postgres:[PASSWORD]@db.[REF].supabase.co:5432/postgres
-JWT_SECRET=your_shared_jwt_secret_with_mad3oom_online
-API_KEY_SECRET=mad3oom_api_key_salt
-WEBHOOK_SECRET=mad3oom_webhook_secret
+#### طريقة 1: استخدام JWT Token
+```javascript
+localStorage.setItem('jwt_token', 'your_jwt_token_here');
 ```
 
-### 3. Running the Server
-
-```bash
-# Development mode
-pnpm run dev
-
-# Production mode
-pnpm start
+#### طريقة 2: استخدام API Key
+```javascript
+localStorage.setItem('api_key', 'mad_your_api_key_here');
 ```
 
-## 📖 API Documentation
+### 3. استخدام المنصة
 
-Once the server is running, visit:
-`http://localhost:3000/api/docs` or `https://api.mad3oom.online/api/docs`
+بعد تكوين المصادقة، يمكنك:
+- عرض وإنشاء التذاكر
+- إدارة مفاتيح API
+- إدارة الويب هوك
+- عرض الأمثلة البرمجية
 
-## 🔗 Integration with mad3oom.online
+## 📚 التوثيق
 
-This API expects a JWT token issued by `mad3oom.online` for administrative tasks (like managing API keys). The token must contain a `managerId` claim.
+### نقاط الاتصال الرئيسية
 
-- **Authentication Header**: `Authorization: Bearer <JWT_TOKEN>`
-- **API Consumption Header**: `x-api-key: <YOUR_API_KEY>`
+#### التذاكر (Tickets)
+- `POST /api/v1/tickets` - إنشاء تذكرة جديدة
+- `GET /api/v1/tickets` - جلب جميع التذاكر
+- `GET /api/v1/tickets/{id}` - جلب تذكرة واحدة
+- `POST /api/v1/tickets/{id}/reply` - إضافة رد على التذكرة
+- `PATCH /api/v1/tickets/{id}/status` - تحديث حالة التذكرة
 
-## 📝 Example: Create a Ticket via API
+#### مفاتيح API (API Keys)
+- `POST /api/v1/api-keys` - إنشاء مفتاح API جديد
+- `GET /api/v1/api-keys` - جلب جميع المفاتيح
+- `DELETE /api/v1/api-keys/{id}` - إلغاء مفتاح API
 
+#### الويب هوك (Webhooks)
+- `POST /api/v1/webhooks` - إنشاء ويب هوك جديد
+- `GET /api/v1/webhooks` - جلب جميع الويب هوك
+- `PATCH /api/v1/webhooks/{id}` - تحديث الويب هوك
+- `DELETE /api/v1/webhooks/{id}` - حذف الويب هوك
+
+### أمثلة الاستخدام
+
+#### إنشاء تذكرة باستخدام JavaScript
+```javascript
+const API_KEY = 'mad_your_api_key_here';
+const BASE_URL = 'https://api.mad3oom.online/api/v1';
+
+async function createTicket(subject, description, priority) {
+    const response = await fetch(`${BASE_URL}/tickets`, {
+        method: 'POST',
+        headers: {
+            'X-API-Key': API_KEY,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            subject,
+            description,
+            priority,
+            created_by: 'user@example.com'
+        })
+    });
+
+    return await response.json();
+}
+```
+
+#### إنشاء تذكرة باستخدام Python
+```python
+import requests
+
+API_KEY = 'mad_your_api_key_here'
+BASE_URL = 'https://api.mad3oom.online/api/v1'
+
+def create_ticket(subject, description, priority):
+    headers = {
+        'X-API-Key': API_KEY,
+        'Content-Type': 'application/json'
+    }
+    
+    payload = {
+        'subject': subject,
+        'description': description,
+        'priority': priority,
+        'created_by': 'user@example.com'
+    }
+    
+    response = requests.post(
+        f'{BASE_URL}/tickets',
+        headers=headers,
+        json=payload
+    )
+    
+    return response.json()
+```
+
+#### إنشاء تذكرة باستخدام cURL
 ```bash
 curl -X POST https://api.mad3oom.online/api/v1/tickets \
-  -H "x-api-key: your_api_key_here" \
+  -H "X-API-Key: mad_your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "subject": "System Outage",
-    "description": "Users are unable to access the dashboard",
-    "priority": "high"
+    "subject": "مشكلة في التطبيق",
+    "description": "التطبيق لا يعمل",
+    "priority": "high",
+    "created_by": "user@example.com"
   }'
 ```
 
+## 🔐 الأمان
+
+### المصادقة
+يدعم النظام طريقتين للمصادقة:
+1. **JWT Token**: `Authorization: Bearer <JWT_TOKEN>`
+2. **API Key**: `X-API-Key: mad_<random_string>`
+
+### الويب هوك
+جميع الويب هوك موقعة بـ HMAC-SHA256 للتحقق من الأمان:
+- `X-Mad3oom-Event`: نوع الحدث
+- `X-Mad3oom-Timestamp`: الطابع الزمني
+- `X-Mad3oom-Signature`: التوقيع
+
+### التحقق من التوقيع
+```javascript
+const crypto = require('crypto');
+
+function verifyWebhookSignature(payload, signature, secret) {
+    const hash = crypto
+        .createHmac('sha256', secret)
+        .update(JSON.stringify(payload))
+        .digest('hex');
+    
+    return hash === signature;
+}
+```
+
+## 📁 هيكل المشروع
+
+```
+api-mad3oom/
+├── index.html              # الصفحة الرئيسية
+├── css/
+│   └── style.css           # أنماط CSS
+├── js/
+│   └── main.js             # منطق JavaScript
+└── README.md               # هذا الملف
+```
+
+## 🛠️ التطوير
+
+### المتطلبات
+- Node.js 14+ (اختياري، للتطوير المحلي)
+- أي محرر نصوص (VS Code, Sublime, إلخ)
+
+### التثبيت المحلي
+```bash
+# استنساخ المستودع
+git clone https://github.com/moudabdelwahab/api-mad3oom.git
+
+# الدخول إلى المجلد
+cd api-mad3oom
+
+# فتح الملف في المتصفح
+open index.html
+```
+
+### البناء والنشر
+المشروع يستخدم HTML و CSS و JavaScript بدون أي أدوات بناء معقدة. يمكن نشره مباشرة على أي خادم ويب.
+
+## 🐛 الأخطاء الشائعة
+
+### خطأ 401: Unauthorized
+**السبب**: مفتاح API أو JWT Token غير صحيح أو منتهي الصلاحية
+**الحل**: تحقق من صحة المفتاح وأعد تحميل الصفحة
+
+### خطأ 403: Forbidden
+**السبب**: المفتاح لا يملك الصلاحيات المطلوبة
+**الحل**: تحقق من الصلاحيات المعطاة للمفتاح
+
+### خطأ 429: Too Many Requests
+**السبب**: تم تجاوز حد الطلبات المسموح به
+**الحل**: انتظر قليلاً قبل إرسال طلبات جديدة
+
+## 📞 الدعم والمساعدة
+
+للمزيد من المعلومات والدعم:
+- 📧 البريد الإلكتروني: support@mad3oom.online
+- 🌐 الموقع: https://mad3oom.online
+- 📚 التوثيق الكاملة: https://api.mad3oom.online/docs
+
+## 📄 الترخيص
+
+هذا المشروع مرخص تحت رخصة MIT. انظر ملف LICENSE للمزيد من التفاصيل.
+
+## 🤝 المساهمة
+
+نرحب بمساهماتك! يرجى:
+1. عمل Fork للمستودع
+2. إنشاء فرع جديد (`git checkout -b feature/amazing-feature`)
+3. Commit التغييرات (`git commit -m 'Add amazing feature'`)
+4. Push إلى الفرع (`git push origin feature/amazing-feature`)
+5. فتح Pull Request
+
+## 📝 ملاحظات الإصدار
+
+### الإصدار 1.0 (2026-05-07)
+- ✅ إطلاق المنصة الأولى
+- ✅ إدارة التذاكر
+- ✅ إدارة مفاتيح API
+- ✅ إدارة الويب هوك
+- ✅ توثيق شامل
+- ✅ أمثلة برمجية
+
+## 🎓 الموارد التعليمية
+
+- [شرح API Teams](https://api.mad3oom.online/docs)
+- [أمثلة الويب هوك](https://api.mad3oom.online/webhooks)
+- [دليل الأمان](https://api.mad3oom.online/security)
+
 ---
-Designed for **Mad3oom Support Platform**.
+
+تم إنشاؤه بـ ❤️ من قبل فريق مدعوم
