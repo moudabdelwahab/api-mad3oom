@@ -1,0 +1,27 @@
+{
+  "name": "api-mad3oom-frontend",
+  "version": "1.0.0",
+  "description": "منصة مطوري مدعوم - Teams API Developer Platform",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'Static site - no build needed'",
+    "start": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "api",
+    "teams",
+    "developer",
+    "platform",
+    "mad3oom"
+  ],
+  "author": "Manus AI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moudabdelwahab/api-mad3oom.git"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
