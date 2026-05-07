@@ -46,6 +46,9 @@
             <div class="sidebar-footer">
                 <p class="version">الإصدار 1.0</p>
                 <p class="status">الحالة: <span class="status-badge active">نشط</span></p>
+                <button class="btn btn-secondary btn-small" onclick="handleLogout()" style="width: 100%; margin-top: 1rem;">
+                    🚪 تسجيل الخروج
+                </button>
             </div>
         </aside>
 
@@ -642,6 +645,8 @@ create_ticket('مشكلة في التطبيق', 'التطبيق لا يعمل', 
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-integration.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

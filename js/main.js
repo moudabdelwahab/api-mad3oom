@@ -748,9 +748,43 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ============================================
+// Logout Handler
+// ============================================
+
+async function handleLogout() {
+    if (!confirm('هل أنت متأكد من رغبتك في تسجيل الخروج؟')) {
+        return;
+    }
+
+    try {
+        if (supabaseIntegration && supabaseIntegration.client) {
+            await supabaseIntegration.signOut();
+        }
+        
+        localStorage.removeItem('jwt_token');
+        localStorage.removeItem('api_key');
+        localStorage.removeItem('team_id');
+        
+        showNotification('تم تسجيل الخروج بنجاح', 'success');
+        setTimeout(() => {
+            window.location.href = 'auth.html';
+        }, 1000);
+    } catch (error) {
+        console.error('Logout error:', error);
+        showNotification('خطأ في تسجيل الخروج', 'error');
+    }
+}
+
+// ============================================
 // Initialize on Page Load
 // ============================================
 
 window.addEventListener('load', () => {
+    const jwtToken = localStorage.getItem('jwt_token');
+    if (!jwtToken) {
+        window.location.href = 'auth.html';
+        return;
+    }
+    
     navigateTo('home');
 });
