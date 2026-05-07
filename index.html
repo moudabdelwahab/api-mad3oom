@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة مطوري مدعوم - Teams API Platform</title>
+    <link rel="stylesheet" href="css/color-system.css">
+    <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -18,27 +20,27 @@
             
             <nav class="nav-menu">
                 <a href="#home" class="nav-item active" data-section="home">
-                    <span class="icon">🏠</span>
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-home"></use></svg></span>
                     <span>الرئيسية</span>
                 </a>
                 <a href="#documentation" class="nav-item" data-section="documentation">
-                    <span class="icon">📚</span>
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-docs"></use></svg></span>
                     <span>التوثيق</span>
                 </a>
                 <a href="#tickets" class="nav-item" data-section="tickets">
-                    <span class="icon">🎫</span>
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-tickets"></use></svg></span>
                     <span>التذاكر</span>
                 </a>
                 <a href="#api-keys" class="nav-item" data-section="api-keys">
-                    <span class="icon">🔑</span>
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-keys"></use></svg></span>
                     <span>مفاتيح API</span>
                 </a>
                 <a href="#webhooks" class="nav-item" data-section="webhooks">
-                    <span class="icon">🪝</span>
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-webhooks"></use></svg></span>
                     <span>الويب هوك</span>
                 </a>
                 <a href="#examples" class="nav-item" data-section="examples">
-                    <span class="icon">💻</span>
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-code"></use></svg></span>
                     <span>أمثلة برمجية</span>
                 </a>
             </nav>
@@ -47,7 +49,8 @@
                 <p class="version">الإصدار 1.0</p>
                 <p class="status">الحالة: <span class="status-badge active">نشط</span></p>
                 <button class="btn btn-secondary btn-small" onclick="handleLogout()" style="width: 100%; margin-top: 1rem;">
-                    🚪 تسجيل الخروج
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-logout"></use></svg></span>
+                    تسجيل الخروج
                 </button>
             </div>
         </aside>
@@ -62,22 +65,30 @@
                     
                     <div class="features-grid">
                         <div class="feature-card">
-                            <div class="feature-icon">👥</div>
+                            <div class="icon-wrapper primary">
+                                <span class="icon icon-lg"><svg><use xlink:href="assets/icons.svg#icon-teams"></use></svg></span>
+                            </div>
                             <h3>إدارة الفرق</h3>
                             <p>نظام متقدم لإدارة فرق العمل والأعضاء والأدوار</p>
                         </div>
                         <div class="feature-card">
-                            <div class="feature-icon">🎫</div>
+                            <div class="icon-wrapper primary">
+                                <span class="icon icon-lg"><svg><use xlink:href="assets/icons.svg#icon-tickets"></use></svg></span>
+                            </div>
                             <h3>نظام التذاكر</h3>
                             <p>إنشاء وإدارة التذاكر مع الأولويات والحالات</p>
                         </div>
                         <div class="feature-card">
-                            <div class="feature-icon">🪝</div>
+                            <div class="icon-wrapper primary">
+                                <span class="icon icon-lg"><svg><use xlink:href="assets/icons.svg#icon-webhooks"></use></svg></span>
+                            </div>
                             <h3>الويب هوك</h3>
                             <p>تلقي إشعارات فورية عند حدوث أحداث مهمة</p>
                         </div>
                         <div class="feature-card">
-                            <div class="feature-icon">🔐</div>
+                            <div class="icon-wrapper primary">
+                                <span class="icon icon-lg"><svg><use xlink:href="assets/icons.svg#icon-security"></use></svg></span>
+                            </div>
                             <h3>أمان عالي</h3>
                             <p>مصادقة JWT وتوقيع الويب هوك والتشفير</p>
                         </div>

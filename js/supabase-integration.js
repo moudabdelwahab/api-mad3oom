@@ -514,8 +514,8 @@ class SupabaseIntegration {
 // ============================================
 
 // Get Supabase credentials from environment or config
-const SUPABASE_URL = localStorage.getItem('supabase_url') || 'https://your-supabase-url.supabase.co';
-const SUPABASE_KEY = localStorage.getItem('supabase_key') || 'your-supabase-anon-key';
+const SUPABASE_URL = 'https://srnelrdpqkcntbgudyto.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_0pvB8_xD0txjdJBkYqXMyg__jKMw71W';
 
 // Create global instance
 const supabaseIntegration = new SupabaseIntegration(SUPABASE_URL, SUPABASE_KEY);
