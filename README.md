@@ -138,6 +138,17 @@ curl -X POST https://api.mad3oom.online/api/v1/tickets \
   }'
 ```
 
+#### إرسال رسالة واتساب (Session Message)
+```bash
+curl -X POST https://api.mad3oom.online/v1/whatsapp/session/send \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "201025998920",
+    "message": "مرحباً بك في خدمتنا"
+  }'
+```
+
 ## 🔐 الأمان
 
 ### المصادقة
@@ -239,6 +250,7 @@ open index.html
 - ✅ إدارة التذاكر
 - ✅ إدارة مفاتيح API
 - ✅ إدارة الويب هوك
+- ✅ إرسال رسائل واتساب (Session Messages)
 - ✅ توثيق شامل
 - ✅ أمثلة برمجية
 
