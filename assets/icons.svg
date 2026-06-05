@@ -157,4 +157,10 @@
     <line x1="18" y1="6" x2="6" y2="18"></line>
     <line x1="6" y1="6" x2="18" y2="18"></line>
   </symbol>
+
+  <!-- WhatsApp Icon -->
+  <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7c.9 0 1.8.1 2.7.4l2.7-.9-1.2 2.4c.4.9.7 1.9.7 2.9z"></path>
+    <path d="M17.5 15.5c-.3 0-1.5 0-1.5 0s-1.5-1.5-2.5-1.5-1.5 1.5-2.5 1.5-1.5 0-1.5 0"></path>
+  </symbol>
 </svg>

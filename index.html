@@ -109,6 +109,7 @@
                     <button class="tab-btn active" onclick="switchTab('overview')">نظرة عامة</button>
                     <button class="tab-btn" onclick="switchTab('auth')">المصادقة</button>
                     <button class="tab-btn" onclick="switchTab('tickets')">التذاكر</button>
+                    <button class="tab-btn" onclick="switchTab('whatsapp')">واتساب</button>
                     <button class="tab-btn" onclick="switchTab('webhooks')">الويب هوك</button>
                     <button class="tab-btn" onclick="switchTab('errors')">الأخطاء</button>
                 </div>
@@ -257,6 +258,49 @@ Content-Type: application/json</code></pre>
                                 <code>/tickets/{id}/status</code>
                             </div>
                             <p>تحديث حالة التذكرة</p>
+                        </div>
+                    </div>
+
+                    <div id="whatsapp" class="tab-pane">
+                        <h3>نقاط الاتصال - واتساب (WhatsApp Endpoints)</h3>
+                        <p>تتيح لك نقاط الاتصال هذه إرسال رسائل حرة (Session Messages) للعملاء عبر واتساب ضمن نافذة الـ 24 ساعة.</p>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <code>/v1/whatsapp/session/send</code>
+                            </div>
+                            <p>إرسال رسالة حرة (Session Message) للعميل</p>
+                            <h5>المعاملات:</h5>
+                            <table class="params-table">
+                                <thead>
+                                    <tr>
+                                        <th>المعامل</th>
+                                        <th>النوع</th>
+                                        <th>الوصف</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>to</code></td>
+                                        <td>string</td>
+                                        <td>رقم هاتف المستلم بالصيغة الدولية (بدون +)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>message</code></td>
+                                        <td>string</td>
+                                        <td>نص الرسالة المراد إرسالها</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>phone_number_id</code></td>
+                                        <td>string</td>
+                                        <td>(اختياري) معرف رقم الهاتف في حال وجود أكثر من رقم مربوط</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="info-box">
+                                <strong>ملاحظة:</strong> يجب أن تكون الرسالة ضمن نافذة الـ 24 ساعة من آخر رسالة استقبلتها من العميل.
+                            </div>
                         </div>
                     </div>
 
@@ -548,6 +592,7 @@ function verifyWebhookSignature(payload, signature, secret) {
                     <button class="example-tab active" onclick="switchExample('javascript')">JavaScript</button>
                     <button class="example-tab" onclick="switchExample('python')">Python</button>
                     <button class="example-tab" onclick="switchExample('curl')">cURL</button>
+                    <button class="example-tab" onclick="switchExample('whatsapp')">واتساب</button>
                 </div>
 
                 <div class="examples-content">
@@ -641,14 +686,48 @@ create_ticket('مشكلة في التطبيق', 'التطبيق لا يعمل', 
                         <div class="code-block">
                             <div class="code-header">Bash</div>
                             <pre><code>curl -X POST https://api.mad3oom.online/api/v1/tickets \
-  -H "X-API-Key: mad_your_api_key_here" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "subject": "مشكلة في التطبيق",
-    "description": "التطبيق لا يعمل",
-    "priority": "high",
-    "created_by": "user@example.com"
-  }'</code></pre>
+	  -H "X-API-Key: mad_your_api_key_here" \
+	  -H "Content-Type: application/json" \
+	  -d '{
+	    "subject": "مشكلة في التطبيق",
+	    "description": "التطبيق لا يعمل",
+	    "priority": "high",
+	    "created_by": "user@example.com"
+	  }'</code></pre>
+                        </div>
+                    </div>
+
+                    <div id="whatsapp" class="example-pane">
+                        <h3>JavaScript - إرسال رسالة واتساب</h3>
+                        <div class="code-block">
+                            <div class="code-header">JavaScript</div>
+                            <pre><code>const API_KEY = 'mad_your_api_key_here';
+const BASE_URL = 'https://api.mad3oom.online';
+
+async function sendWhatsAppMessage(to, message) {
+    try {
+        const response = await fetch(`${BASE_URL}/v1/whatsapp/session/send`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                to,
+                message
+            })
+        });
+
+        const data = await response.json();
+        console.log('Response:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// الاستخدام
+sendWhatsAppMessage('201025998920', 'مرحباً بك في خدمتنا');</code></pre>
                         </div>
                     </div>
                 </div>
