@@ -6,54 +6,41 @@
 <title>بيانات اعتماد API · معدوم</title>
 
 <style>
-  /* ============================================================
-     MAD3OOM DESIGN SYSTEM — TOKENS
-     ============================================================ */
   :root{
     --m-bg:#FAFBFC;
     --m-surface:#FFFFFF;
     --m-surface-raised:#FFFFFF;
     --m-border:#E6E8EC;
     --m-border-strong:#D7DAE0;
-
     --m-text:#10131A;
     --m-text-secondary:#5B6170;
     --m-text-muted:#8B90A0;
-
     --m-primary:#5B5FEF;
     --m-primary-hover:#4A4EDB;
     --m-primary-soft:#EEEFFE;
     --m-primary-text:#4A4EDB;
-
     --m-success:#16A34A;
     --m-success-soft:#E9F8EE;
     --m-success-border:#BBEFCB;
-
     --m-danger:#E0383F;
     --m-danger-hover:#C92D34;
     --m-danger-soft:#FDECEC;
     --m-danger-border:#F8C9CB;
-
     --m-warning:#B7791F;
     --m-warning-soft:#FFF6E0;
     --m-warning-border:#F5DDA0;
     --m-warning-icon:#D9920C;
-
     --m-gray-soft:#F1F2F5;
     --m-gray-border:#E1E3E9;
     --m-gray-text:#6B7080;
-
     --m-radius-sm:8px;
     --m-radius-md:12px;
     --m-radius-lg:18px;
-
     --m-shadow-sm:0 1px 2px rgba(16,19,26,0.04);
     --m-shadow-md:0 4px 14px rgba(16,19,26,0.06), 0 1px 2px rgba(16,19,26,0.04);
     --m-shadow-lg:0 16px 40px rgba(16,19,26,0.14), 0 4px 10px rgba(16,19,26,0.06);
-
     --m-font-ui: "Segoe UI", Tahoma, "Cairo", "Noto Kufi Arabic", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
     --m-font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
-
     --m-ease: cubic-bezier(.4,0,.2,1);
   }
 
@@ -63,34 +50,27 @@
     --m-surface-raised:#1A1D27;
     --m-border:#262A36;
     --m-border-strong:#343948;
-
     --m-text:#F2F3F7;
     --m-text-secondary:#A7ACBC;
     --m-text-muted:#6E7388;
-
     --m-primary:#7B7FFB;
     --m-primary-hover:#9092FC;
     --m-primary-soft:#23244A;
     --m-primary-text:#A7A9FD;
-
     --m-success:#3DD56D;
     --m-success-soft:#102A19;
     --m-success-border:#1E4A2D;
-
     --m-danger:#F2545B;
     --m-danger-hover:#F77A80;
     --m-danger-soft:#2C1518;
     --m-danger-border:#4A2226;
-
     --m-warning:#E8B339;
     --m-warning-soft:#2B2210;
     --m-warning-border:#4D3D14;
     --m-warning-icon:#F0C04A;
-
     --m-gray-soft:#1E212B;
     --m-gray-border:#2C3040;
     --m-gray-text:#9498A8;
-
     --m-shadow-sm:0 1px 2px rgba(0,0,0,0.3);
     --m-shadow-md:0 4px 14px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
     --m-shadow-lg:0 20px 50px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.35);
@@ -116,9 +96,6 @@
     border-radius:6px;
   }
 
-  /* ============================================================
-     LAYOUT
-     ============================================================ */
   .page{
     max-width:1100px;
     margin:0 auto;
@@ -149,7 +126,6 @@
   .theme-toggle:hover{ border-color:var(--m-border-strong); transform:translateY(-1px); }
   .theme-toggle svg{ width:15px; height:15px; }
 
-  /* ---------------- Header ---------------- */
   .page-header{
     display:flex;
     align-items:flex-start;
@@ -158,18 +134,8 @@
     margin-bottom:32px;
     flex-wrap:wrap;
   }
-  .page-header h1{
-    font-size:26px;
-    font-weight:700;
-    margin:0 0 6px;
-  }
-  .page-header p{
-    margin:0;
-    color:var(--m-text-secondary);
-    font-size:14.5px;
-    max-width:560px;
-    line-height:1.55;
-  }
+  .page-header h1{ font-size:26px; font-weight:700; margin:0 0 6px; }
+  .page-header p{ margin:0; color:var(--m-text-secondary); font-size:14.5px; max-width:560px; line-height:1.55; }
 
   .btn{
     display:inline-flex;
@@ -186,34 +152,18 @@
     white-space:nowrap;
   }
   .btn:active{ transform:scale(.97); }
-  .btn-primary{
-    background:var(--m-primary);
-    color:#fff;
-    box-shadow:0 2px 8px rgba(91,95,239,.28);
-  }
+  .btn-primary{ background:var(--m-primary); color:#fff; box-shadow:0 2px 8px rgba(91,95,239,.28); }
   .btn-primary:hover{ background:var(--m-primary-hover); box-shadow:0 4px 14px rgba(91,95,239,.36); transform:translateY(-1px); }
-  .btn-secondary{
-    background:var(--m-surface);
-    color:var(--m-text);
-    border-color:var(--m-border-strong);
-  }
+  .btn-secondary{ background:var(--m-surface); color:var(--m-text); border-color:var(--m-border-strong); }
   .btn-secondary:hover{ background:var(--m-gray-soft); transform:translateY(-1px); }
-  .btn-danger{
-    background:var(--m-danger);
-    color:#fff;
-  }
+  .btn-danger{ background:var(--m-danger); color:#fff; }
   .btn-danger:hover{ background:var(--m-danger-hover); transform:translateY(-1px); }
-  .btn-ghost{
-    background:transparent;
-    color:var(--m-text-secondary);
-    border-color:var(--m-border);
-  }
+  .btn-ghost{ background:transparent; color:var(--m-text-secondary); border-color:var(--m-border); }
   .btn-ghost:hover{ background:var(--m-gray-soft); color:var(--m-text); }
   .btn:disabled{ opacity:.55; cursor:not-allowed; transform:none !important; }
   .btn svg{ width:16px; height:16px; flex-shrink:0; }
   .btn-full{ width:100%; justify-content:center; }
 
-  /* ---------------- Card / Table ---------------- */
   .card{
     background:var(--m-surface);
     border:1px solid var(--m-border);
@@ -229,11 +179,7 @@
   }
 
   .table-scroll{ overflow-x:auto; }
-  table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:720px;
-  }
+  table{ width:100%; border-collapse:collapse; min-width:720px; }
   thead th{
     text-align:right;
     font-size:12.5px;
@@ -253,12 +199,8 @@
   tbody tr{ transition:background-color .15s var(--m-ease); }
   tbody tr:last-child td{ border-bottom:none; }
   tbody tr:hover{ background:var(--m-gray-soft); }
-  tbody tr.row-exit{
-    animation:rowExit .25s var(--m-ease) forwards;
-  }
-  @keyframes rowExit{
-    to{ opacity:0; transform:translateX(8px) scaleY(0); }
-  }
+  tbody tr.row-exit{ animation:rowExit .25s var(--m-ease) forwards; }
+  @keyframes rowExit{ to{ opacity:0; transform:translateX(8px) scaleY(0); } }
   tbody tr.row-enter{ animation:fadeUp .35s var(--m-ease); }
 
   .token-name{ font-weight:600; }
@@ -313,13 +255,7 @@
     border-radius:999px;
     line-height:1.4;
   }
-  .badge::before{
-    content:"";
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    flex-shrink:0;
-  }
+  .badge::before{ content:""; width:6px; height:6px; border-radius:50%; flex-shrink:0; }
   .badge-active{ background:var(--m-success-soft); color:var(--m-success); border:1px solid var(--m-success-border); }
   .badge-active::before{ background:var(--m-success); }
   .badge-disabled{ background:var(--m-gray-soft); color:var(--m-gray-text); border:1px solid var(--m-gray-border); }
@@ -345,7 +281,6 @@
   .icon-btn:hover{ background:var(--m-gray-soft); border-color:var(--m-border-strong); transform:translateY(-1px); }
   .icon-btn.danger:hover{ background:var(--m-danger-soft); border-color:var(--m-danger-border); color:var(--m-danger); }
 
-  /* ---------------- Empty State ---------------- */
   .empty-state{
     padding:64px 24px;
     text-align:center;
@@ -365,7 +300,6 @@
   .empty-state h3{ margin:0; font-size:16px; font-weight:700; }
   .empty-state p{ margin:0; color:var(--m-text-secondary); font-size:14px; max-width:340px; line-height:1.5; }
 
-  /* ---------------- Security Info Card ---------------- */
   .security-card{
     margin-top:32px;
     padding:24px 26px;
@@ -374,12 +308,7 @@
     border-radius:var(--m-radius-lg);
     box-shadow:var(--m-shadow-sm);
   }
-  .security-card .security-head{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-  }
+  .security-card .security-head{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
   .security-card .security-head .icon-wrap{
     width:32px; height:32px;
     border-radius:9px;
@@ -390,34 +319,13 @@
   }
   .security-card .security-head .icon-wrap svg{ width:17px; height:17px; }
   .security-card h3{ margin:0; font-size:15.5px; font-weight:700; }
-  .security-list{
-    list-style:none;
-    margin:0;
-    padding:0;
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px 24px;
-  }
-  .security-list li{
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
-    font-size:13.5px;
-    color:var(--m-text-secondary);
-    line-height:1.5;
-  }
-  .security-list li svg{
-    width:15px; height:15px;
-    color:var(--m-success);
-    flex-shrink:0;
-    margin-top:2px;
-  }
-  @media (max-width:640px){
-    .security-list{ grid-template-columns:1fr; }
-  }
+  .security-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,1fr); gap:12px 24px; }
+  .security-list li{ display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:var(--m-text-secondary); line-height:1.5; }
+  .security-list li svg{ width:15px; height:15px; color:var(--m-success); flex-shrink:0; margin-top:2px; }
+  @media (max-width:640px){ .security-list{ grid-template-columns:1fr; } }
 
   /* ============================================================
-     MODALS
+     MODALS — FIXED: using a single flag to prevent double-fire
      ============================================================ */
   .modal-overlay{
     position:fixed; inset:0;
@@ -428,12 +336,20 @@
     justify-content:center;
     padding:20px;
     z-index:1000;
-    opacity:0;
+  }
+  /* Hidden state — display:none completely removes it from layout */
+  .modal-overlay[hidden]{ display:none !important; }
+
+  /* Animate-in when shown */
+  .modal-overlay.is-open{
     animation:overlayIn .2s var(--m-ease) forwards;
   }
-  .modal-overlay.closing{ animation:overlayOut .18s var(--m-ease) forwards; }
-  @keyframes overlayIn{ to{ opacity:1; } }
-  @keyframes overlayOut{ to{ opacity:0; } }
+  .modal-overlay.is-closing{
+    animation:overlayOut .18s var(--m-ease) forwards;
+    pointer-events:none;
+  }
+  @keyframes overlayIn{ from{ opacity:0; } to{ opacity:1; } }
+  @keyframes overlayOut{ from{ opacity:1; } to{ opacity:0; } }
 
   .modal{
     background:var(--m-surface-raised);
@@ -444,13 +360,15 @@
     max-width:440px;
     max-height:90vh;
     overflow-y:auto;
-    transform:translateY(14px) scale(.98);
-    opacity:0;
+  }
+  .modal-overlay.is-open .modal{
     animation:modalIn .25s var(--m-ease) forwards;
   }
-  .modal-overlay.closing .modal{ animation:modalOut .18s var(--m-ease) forwards; }
-  @keyframes modalIn{ to{ transform:translateY(0) scale(1); opacity:1; } }
-  @keyframes modalOut{ to{ transform:translateY(10px) scale(.97); opacity:0; } }
+  .modal-overlay.is-closing .modal{
+    animation:modalOut .18s var(--m-ease) forwards;
+  }
+  @keyframes modalIn{ from{ transform:translateY(14px) scale(.98); opacity:0; } to{ transform:translateY(0) scale(1); opacity:1; } }
+  @keyframes modalOut{ from{ transform:translateY(0) scale(1); opacity:1; } to{ transform:translateY(10px) scale(.97); opacity:0; } }
 
   .modal-header{
     display:flex;
@@ -476,29 +394,13 @@
   .modal-close svg{ width:18px; height:18px; }
 
   .modal-body{ padding:18px 24px; }
-  .modal-footer{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    padding:0 24px 24px;
-  }
+  .modal-footer{ display:flex; justify-content:flex-end; gap:10px; padding:0 24px 24px; }
 
   .field{ margin-bottom:16px; }
   .field:last-child{ margin-bottom:0; }
-  .field label{
-    display:block;
-    font-size:13px;
-    font-weight:600;
-    margin-bottom:6px;
-    color:var(--m-text);
-  }
-  .field .hint{
-    font-size:12px;
-    color:var(--m-text-muted);
-    margin-top:5px;
-  }
-  .field input,
-  .field textarea{
+  .field label{ display:block; font-size:13px; font-weight:600; margin-bottom:6px; color:var(--m-text); }
+  .field .hint{ font-size:12px; color:var(--m-text-muted); margin-top:5px; }
+  .field input, .field textarea{
     width:100%;
     font-family:inherit;
     font-size:14px;
@@ -509,37 +411,20 @@
     color:var(--m-text);
     transition:border-color .15s var(--m-ease), box-shadow .15s var(--m-ease);
   }
-  .field input:focus,
-  .field textarea:focus{
+  .field input:focus, .field textarea:focus{
     outline:none;
     border-color:var(--m-primary);
     box-shadow:0 0 0 3px var(--m-primary-soft);
   }
   .field textarea{ resize:vertical; min-height:72px; font-family:inherit; }
-  .field .error-text{
-    color:var(--m-danger);
-    font-size:12px;
-    margin-top:6px;
-    display:none;
-  }
+  .field .error-text{ color:var(--m-danger); font-size:12px; margin-top:6px; display:none; }
   .field.has-error input{ border-color:var(--m-danger); }
   .field.has-error .error-text{ display:block; }
 
-  /* ---- credential reveal block ---- */
   .cred-block{ margin-bottom:14px; }
   .cred-block:last-of-type{ margin-bottom:0; }
-  .cred-label{
-    font-size:12.5px;
-    font-weight:600;
-    color:var(--m-text-muted);
-    margin-bottom:6px;
-    display:block;
-  }
-  .cred-row{
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
+  .cred-label{ font-size:12.5px; font-weight:600; color:var(--m-text-muted); margin-bottom:6px; display:block; }
+  .cred-row{ display:flex; align-items:center; gap:8px; }
   .cred-row input{
     flex:1;
     font-family:var(--m-font-mono);
@@ -599,15 +484,7 @@
   }
   .danger-banner svg{ width:18px; height:18px; flex-shrink:0; margin-top:1px; }
 
-  /* ---- generating / loading spinner ---- */
-  .spinner-wrap{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:14px;
-    padding:36px 10px;
-  }
+  .spinner-wrap{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:36px 10px; }
   .spinner{
     width:34px; height:34px;
     border-radius:50%;
@@ -618,9 +495,6 @@
   @keyframes spin{ to{ transform:rotate(360deg); } }
   .spinner-wrap p{ margin:0; font-size:13.5px; color:var(--m-text-secondary); }
 
-  /* ============================================================
-     TOAST
-     ============================================================ */
   .toast-stack{
     position:fixed;
     bottom:24px;
@@ -651,51 +525,22 @@
   @keyframes toastIn{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
   @keyframes toastOut{ to{ opacity:0; transform:translateY(8px); } }
 
-  .visually-hidden{
-    position:absolute; width:1px; height:1px;
-    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;
-  }
-
-  /* ---------------- Responsive ---------------- */
   @media (max-width:640px){
     .page{ padding:24px 16px 60px; }
     .page-header{ flex-direction:column; }
     .page-header .btn{ width:100%; justify-content:center; }
     thead{ display:none; }
     table, tbody, tr, td{ display:block; width:100%; }
-    tbody tr{
-      border:1px solid var(--m-border);
-      border-radius:var(--m-radius-md);
-      margin-bottom:12px;
-      padding:6px 4px;
-      background:var(--m-surface);
-    }
+    tbody tr{ border:1px solid var(--m-border); border-radius:var(--m-radius-md); margin-bottom:12px; padding:6px 4px; background:var(--m-surface); }
     tbody tr:hover{ background:var(--m-surface); }
-    tbody td{
-      border-bottom:none;
-      padding:8px 14px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      font-size:13.5px;
-    }
-    tbody td::before{
-      content:attr(data-label);
-      font-size:11.5px;
-      font-weight:700;
-      color:var(--m-text-muted);
-      flex-shrink:0;
-    }
+    tbody td{ border-bottom:none; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:13.5px; }
+    tbody td::before{ content:attr(data-label); font-size:11.5px; font-weight:700; color:var(--m-text-muted); flex-shrink:0; }
     .row-actions{ justify-content:flex-end; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     TOP BAR — THEME TOGGLE
-     ============================================================ -->
 <div class="topbar">
   <button class="theme-toggle" id="themeToggle" type="button" aria-label="تبديل الوضع الليلي">
     <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
@@ -704,10 +549,6 @@
 </div>
 
 <main class="page">
-
-  <!-- ============================================================
-       HEADER
-       ============================================================ -->
   <header class="page-header">
     <div>
       <h1>بيانات اعتماد API</h1>
@@ -719,9 +560,6 @@
     </button>
   </header>
 
-  <!-- ============================================================
-       TOKENS TABLE / EMPTY STATE
-       ============================================================ -->
   <section class="card" aria-label="رموز API">
     <div id="tableWrapper" class="table-scroll">
       <table>
@@ -735,9 +573,7 @@
             <th scope="col">الإجراءات</th>
           </tr>
         </thead>
-        <tbody id="tokensTableBody">
-          <!-- rows injected by JS -->
-        </tbody>
+        <tbody id="tokensTableBody"></tbody>
       </table>
     </div>
     <div id="emptyState" class="empty-state" hidden>
@@ -753,9 +589,6 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       SECURITY NOTES
-       ============================================================ -->
   <section class="security-card" aria-label="نصائح الأمان">
     <div class="security-head">
       <div class="icon-wrap">
@@ -782,12 +615,9 @@
       </li>
     </ul>
   </section>
-
 </main>
 
-<!-- ============================================================
-     MODAL: CREATE TOKEN
-     ============================================================ -->
+<!-- MODAL: CREATE TOKEN -->
 <div class="modal-overlay" id="createModalOverlay" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="createModalTitle">
     <div class="modal-header">
@@ -822,9 +652,7 @@
   </div>
 </div>
 
-<!-- ============================================================
-     MODAL: GENERATING (loading state)
-     ============================================================ -->
+<!-- MODAL: GENERATING -->
 <div class="modal-overlay" id="generatingModalOverlay" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-label="جارٍ إنشاء الرمز">
     <div class="spinner-wrap">
@@ -834,9 +662,7 @@
   </div>
 </div>
 
-<!-- ============================================================
-     MODAL: REVEAL CREDENTIALS (one-time secret)
-     ============================================================ -->
+<!-- MODAL: REVEAL CREDENTIALS -->
 <div class="modal-overlay" id="revealModalOverlay" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="revealModalTitle">
     <div class="modal-header">
@@ -864,7 +690,6 @@
           </button>
         </div>
       </div>
-
       <div class="warning-banner" role="alert">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
         <span><strong>هذه هي المرة الوحيدة التي يظهر فيها المفتاح السري.</strong><br>احفظه في مكان آمن — لن تستطيع معدوم إظهاره مرة أخرى.</span>
@@ -876,9 +701,7 @@
   </div>
 </div>
 
-<!-- ============================================================
-     MODAL: DELETE CONFIRMATION
-     ============================================================ -->
+<!-- MODAL: DELETE CONFIRMATION -->
 <div class="modal-overlay" id="deleteModalOverlay" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
     <div class="modal-header">
@@ -902,28 +725,15 @@
   </div>
 </div>
 
-<!-- TOAST CONTAINER -->
 <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
 
 <script>
-/* ================================================================
-   MAD3OOM · API CREDENTIALS PAGE
-   Vanilla JS — modular architecture, Supabase-ready
-   ================================================================ */
-
 (() => {
   'use strict';
 
   /* ----------------------------------------------------------------
      1. MOCK DATA LAYER
-     Replace the bodies of these functions with Supabase calls later.
-     e.g. loadTokens()  -> supabase.from('api_tokens').select(...)
-          createToken() -> supabase.from('api_tokens').insert(...)
-          deleteToken()  -> supabase.from('api_tokens').delete().eq('id', id)
-          toggleToken()  -> supabase.from('api_tokens').update({ status }).eq('id', id)
      ---------------------------------------------------------------- */
-
-  /** @type {{id:string, name:string, description:string, apiKey:string, createdAt:Date, lastUsed:Date|null, status:'active'|'disabled'}[]} */
   let _mockTokensDB = [
     {
       id: 'tok_1',
@@ -954,25 +764,13 @@
     }
   ];
 
-  /**
-   * Fetch all tokens. Supabase-ready: swap body for an async select query.
-   * @returns {Promise<Array>}
-   */
   async function loadTokens() {
-    // Simulate latency for realism — remove once backed by a real network call.
     await delay(150);
     return [..._mockTokensDB].sort((a, b) => b.createdAt - a.createdAt);
   }
 
-  /**
-   * Create a new token record. Returns the full record INCLUDING the
-   * one-time secret. The secret is never persisted after this call.
-   * @param {{name:string, description:string}} payload
-   * @returns {Promise<{id:string,name:string,description:string,apiKey:string,apiSecret:string,createdAt:Date,lastUsed:null,status:'active'}>}
-   */
   async function createToken(payload) {
-    await delay(900); // simulated generation time for the loading spinner
-
+    await delay(900);
     const newToken = {
       id: 'tok_' + Date.now(),
       name: payload.name.trim(),
@@ -982,21 +780,11 @@
       lastUsed: null,
       status: 'active'
     };
-
-    // Secret is generated but intentionally NOT stored in _mockTokensDB —
-    // mirrors how a real backend should only return it once, then hash/discard it.
     const apiSecret = generateApiSecret();
-
     _mockTokensDB.push(newToken);
-
     return { ...newToken, apiSecret };
   }
 
-  /**
-   * Permanently delete a token.
-   * @param {string} id
-   * @returns {Promise<boolean>}
-   */
   async function deleteToken(id) {
     await delay(250);
     const before = _mockTokensDB.length;
@@ -1004,11 +792,6 @@
     return _mockTokensDB.length < before;
   }
 
-  /**
-   * Toggle a token between active and disabled.
-   * @param {string} id
-   * @returns {Promise<Object|null>} the updated token
-   */
   async function toggleToken(id) {
     await delay(220);
     const token = _mockTokensDB.find(t => t.id === id);
@@ -1017,86 +800,141 @@
     return token;
   }
 
-  function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
   /* ----------------------------------------------------------------
-     2. CREDENTIAL GENERATION HELPERS
+     2. HELPERS
      ---------------------------------------------------------------- */
-
   const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-  function randomString(length) {
-    let out = '';
-    for (let i = 0; i < length; i++) {
-      out += CHARSET.charAt(Math.floor(Math.random() * CHARSET.length));
-    }
-    return out;
+  function randomString(len) {
+    let o = '';
+    for (let i = 0; i < len; i++) o += CHARSET[Math.floor(Math.random() * CHARSET.length)];
+    return o;
   }
+  function generateApiKey()    { return `md_live_${randomString(20)}`; }
+  function generateApiSecret() { return `md_secret_${randomString(33)}`; }
 
-  /** Generates a realistic-looking public API key, e.g. md_live_3f9k2pQzL8mWxR7tA1vN */
-  function generateApiKey() {
-    return `md_live_${randomString(20)}`;
-  }
-
-  /** Generates a realistic-looking API secret, e.g. md_secret_7gH2... (33 chars) */
-  function generateApiSecret() {
-    return `md_secret_${randomString(33)}`;
+  function escapeHtml(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
   }
 
   /* ----------------------------------------------------------------
      3. STATE
      ---------------------------------------------------------------- */
-
-  let pendingDeleteId = null;
-  let lastFocusedEl = null;
+  let pendingDeleteId  = null;
+  let lastFocusedEl    = null;
 
   /* ----------------------------------------------------------------
-     4. DOM REFERENCES
+     4. DOM
      ---------------------------------------------------------------- */
-
-  const tableBody       = document.getElementById('tokensTableBody');
+  const tableBody        = document.getElementById('tokensTableBody');
   const tableWrapper     = document.getElementById('tableWrapper');
   const emptyState       = document.getElementById('emptyState');
-
   const createModal      = document.getElementById('createModalOverlay');
-  const generatingModal   = document.getElementById('generatingModalOverlay');
-  const revealModal       = document.getElementById('revealModalOverlay');
-  const deleteModal       = document.getElementById('deleteModalOverlay');
-
-  const createForm        = document.getElementById('createTokenForm');
-  const tokenNameInput    = document.getElementById('tokenNameInput');
-  const tokenDescInput    = document.getElementById('tokenDescInput');
-  const tokenNameField     = document.getElementById('tokenNameField');
-
-  const apiKeyOutput       = document.getElementById('apiKeyOutput');
-  const apiSecretOutput    = document.getElementById('apiSecretOutput');
-
-  const deleteTokenNameEl  = document.getElementById('deleteTokenName');
-  const confirmDeleteBtn   = document.getElementById('confirmDeleteBtn');
-
-  const toastStack         = document.getElementById('toastStack');
+  const generatingModal  = document.getElementById('generatingModalOverlay');
+  const revealModal      = document.getElementById('revealModalOverlay');
+  const deleteModal      = document.getElementById('deleteModalOverlay');
+  const createForm       = document.getElementById('createTokenForm');
+  const tokenNameInput   = document.getElementById('tokenNameInput');
+  const tokenDescInput   = document.getElementById('tokenDescInput');
+  const tokenNameField   = document.getElementById('tokenNameField');
+  const apiKeyOutput     = document.getElementById('apiKeyOutput');
+  const apiSecretOutput  = document.getElementById('apiSecretOutput');
+  const deleteTokenNameEl= document.getElementById('deleteTokenName');
+  const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+  const toastStack       = document.getElementById('toastStack');
 
   /* ----------------------------------------------------------------
-     5. RENDERING
+     5. MODAL SYSTEM — FIXED
+     Uses a simple flag to prevent animationend + setTimeout double-fire.
      ---------------------------------------------------------------- */
 
+  function openModal(overlay) {
+    // If already open, do nothing
+    if (!overlay.hasAttribute('hidden')) return;
+
+    lastFocusedEl = document.activeElement;
+    overlay.removeAttribute('hidden');
+    // Force reflow so the animation plays from scratch
+    overlay.classList.remove('is-open', 'is-closing');
+    void overlay.offsetWidth; // reflow
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+
+    const focusable = overlay.querySelector('input:not([readonly]), textarea, button');
+    if (focusable) requestAnimationFrame(() => focusable.focus());
+  }
+
+  function closeModal(overlay, instant = false) {
+    // If already hidden, do nothing
+    if (overlay.hasAttribute('hidden')) return;
+
+    // If already closing and not forced instant, do nothing
+    if (!instant && overlay.classList.contains('is-closing')) return;
+
+    // Cancel any pending close timer on this overlay
+    if (overlay._closeTimer) {
+      clearTimeout(overlay._closeTimer);
+      overlay._closeTimer = null;
+    }
+
+    overlay.classList.remove('is-open');
+
+    const finish = () => {
+      overlay._closeTimer = null;
+      overlay.setAttribute('hidden', '');
+      overlay.classList.remove('is-closing');
+      // Only restore scroll if no other modal is open
+      if (!document.querySelector('.modal-overlay:not([hidden])')) {
+        document.body.style.overflow = '';
+      }
+      if (lastFocusedEl) {
+        lastFocusedEl.focus();
+        lastFocusedEl = null;
+      }
+    };
+
+    if (instant) {
+      finish();
+    } else {
+      overlay.classList.add('is-closing');
+      overlay._closeTimer = setTimeout(finish, 200);
+    }
+  }
+
+  // ESC closes current modal (except reveal — must be acknowledged)
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const open = document.querySelector('.modal-overlay:not([hidden])');
+    if (!open || open === revealModal) return;
+    closeModal(open);
+  });
+
+  // Click on backdrop closes modal (except reveal)
+  [createModal, generatingModal, deleteModal].forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal(overlay);
+    });
+  });
+
+  // Wire [data-close] buttons
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const overlay = document.getElementById(btn.dataset.close);
+      if (overlay) closeModal(overlay);
+    });
+  });
+
+  /* ----------------------------------------------------------------
+     6. RENDERING
+     ---------------------------------------------------------------- */
   function formatDate(date) {
     if (!date) return '—';
-    return new Date(date).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric', numberingSystem: 'latn' });
-  }
-
-  function maskKeyTail(key) {
-    // Show the prefix + a few trailing chars to keep keys recognizable but compact.
-    if (key.length <= 14) return key;
-    return key;
-  }
-
-  function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
+    return new Date(date).toLocaleDateString('ar-EG', {
+      year: 'numeric', month: 'short', day: 'numeric', numberingSystem: 'latn'
+    });
   }
 
   function renderTokenRow(token) {
@@ -1104,10 +942,10 @@
     tr.dataset.id = token.id;
     tr.classList.add('row-enter');
 
-    const isActive = token.status === 'active';
+    const isActive   = token.status === 'active';
     const badgeClass = isActive ? 'badge-active' : 'badge-disabled';
     const badgeLabel = isActive ? 'مفعّل' : 'معطّل';
-    const toggleLabel = isActive ? 'تعطيل' : 'تفعيل';
+    const toggleLabel= isActive ? 'تعطيل' : 'تفعيل';
 
     tr.innerHTML = `
       <td data-label="اسم الرمز">
@@ -1116,7 +954,7 @@
       </td>
       <td data-label="مفتاح API">
         <span class="key-chip">
-          <span>${escapeHtml(maskKeyTail(token.apiKey))}</span>
+          <span>${escapeHtml(token.apiKey)}</span>
           <button type="button" class="copy-key-btn" data-copy-text="${escapeHtml(token.apiKey)}" aria-label="نسخ مفتاح API لـ ${escapeHtml(token.name)}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           </button>
@@ -1124,9 +962,7 @@
       </td>
       <td data-label="تاريخ الإنشاء" class="muted-cell">${formatDate(token.createdAt)}</td>
       <td data-label="آخر استخدام" class="muted-cell">${token.lastUsed ? formatDate(token.lastUsed) : 'لم يُستخدم'}</td>
-      <td data-label="الحالة">
-        <span class="badge ${badgeClass}">${badgeLabel}</span>
-      </td>
+      <td data-label="الحالة"><span class="badge ${badgeClass}">${badgeLabel}</span></td>
       <td data-label="الإجراءات">
         <div class="row-actions">
           <button type="button" class="icon-btn toggle-btn" data-id="${token.id}">
@@ -1147,19 +983,16 @@
 
   function renderTable(tokens) {
     tableBody.innerHTML = '';
-
     if (!tokens.length) {
       tableWrapper.hidden = true;
       emptyState.hidden = false;
       return;
     }
-
     tableWrapper.hidden = false;
     emptyState.hidden = true;
-
-    const fragment = document.createDocumentFragment();
-    tokens.forEach(token => fragment.appendChild(renderTokenRow(token)));
-    tableBody.appendChild(fragment);
+    const frag = document.createDocumentFragment();
+    tokens.forEach(t => frag.appendChild(renderTokenRow(t)));
+    tableBody.appendChild(frag);
   }
 
   async function refreshTable() {
@@ -1168,9 +1001,8 @@
   }
 
   /* ----------------------------------------------------------------
-     6. TOAST
+     7. TOAST
      ---------------------------------------------------------------- */
-
   function showToast(message) {
     const toast = document.createElement('div');
     toast.className = 'toast';
@@ -1180,7 +1012,6 @@
       <span>${escapeHtml(message)}</span>
     `;
     toastStack.appendChild(toast);
-
     setTimeout(() => {
       toast.classList.add('toast-out');
       toast.addEventListener('animationend', () => toast.remove(), { once: true });
@@ -1188,64 +1019,8 @@
   }
 
   /* ----------------------------------------------------------------
-     7. MODAL HELPERS (generic open/close + a11y)
+     8. CREATE FLOW
      ---------------------------------------------------------------- */
-
-  function openModal(overlay) {
-    lastFocusedEl = document.activeElement;
-    overlay.hidden = false;
-    overlay.classList.remove('closing');
-    document.body.style.overflow = 'hidden';
-
-    const focusable = overlay.querySelector('input, textarea, button');
-    if (focusable) requestAnimationFrame(() => focusable.focus());
-  }
-
-  function closeModal(overlay) {
-    overlay.classList.add('closing');
-    const onDone = () => {
-      overlay.hidden = true;
-      overlay.classList.remove('closing');
-      document.body.style.overflow = '';
-      if (lastFocusedEl) lastFocusedEl.focus();
-    };
-    overlay.addEventListener('animationend', onDone, { once: true });
-    // Fallback in case animationend doesn't fire
-    setTimeout(onDone, 220);
-  }
-
-  function getOpenOverlay() {
-    return document.querySelector('.modal-overlay:not([hidden])');
-  }
-
-  // ESC closes the topmost open modal — except the reveal modal,
-  // which must be explicitly acknowledged so the secret isn't dismissed by accident.
-  document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape') return;
-    const open = getOpenOverlay();
-    if (!open || open === revealModal) return;
-    closeModal(open);
-  });
-
-  // Click outside modal content closes it (same exception for the reveal modal).
-  [createModal, generatingModal, deleteModal].forEach(overlay => {
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) closeModal(overlay);
-    });
-  });
-
-  // Wire up every [data-close] button.
-  document.querySelectorAll('[data-close]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const overlay = document.getElementById(btn.dataset.close);
-      closeModal(overlay);
-    });
-  });
-
-  /* ----------------------------------------------------------------
-     8. CREATE TOKEN FLOW
-     ---------------------------------------------------------------- */
-
   function openCreateModal() {
     createForm.reset();
     tokenNameField.classList.remove('has-error');
@@ -1257,7 +1032,6 @@
 
   createForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const name = tokenNameInput.value.trim();
     if (!name) {
       tokenNameField.classList.add('has-error');
@@ -1265,73 +1039,63 @@
       return;
     }
     tokenNameField.classList.remove('has-error');
-
     const description = tokenDescInput.value.trim();
 
-    // Swap: create -> generating -> reveal
     closeModal(createModal);
+
+    // Wait for close animation then show spinner
     setTimeout(async () => {
       openModal(generatingModal);
-
       try {
         const result = await createToken({ name, description });
-
-        closeModal(generatingModal);
-        setTimeout(() => {
-          apiKeyOutput.value = result.apiKey;
-          apiSecretOutput.value = result.apiSecret;
-          openModal(revealModal);
-        }, 200);
-
+        // Close spinner instantly (no animation needed between loading→reveal)
+        closeModal(generatingModal, true);
+        apiKeyOutput.value    = result.apiKey;
+        apiSecretOutput.value = result.apiSecret;
+        openModal(revealModal);
         await refreshTable();
       } catch (err) {
-        closeModal(generatingModal);
+        closeModal(generatingModal, true);
         showToast('حدث خطأ أثناء إنشاء الرمز.');
         console.error(err);
       }
-    }, 200);
+    }, 220);
   });
 
-  // Once the user closes the reveal modal, wipe the secret from the DOM for good.
   document.getElementById('secretSavedBtn').addEventListener('click', () => {
     closeModal(revealModal);
     setTimeout(() => {
       apiSecretOutput.value = '';
-      apiKeyOutput.value = '';
+      apiKeyOutput.value    = '';
     }, 220);
     showToast('تم حفظ الرمز. لن يظهر المفتاح السري مرة أخرى.');
   });
 
   /* ----------------------------------------------------------------
-     9. COPY TO CLIPBOARD
+     9. COPY
      ---------------------------------------------------------------- */
-
   async function copyText(text) {
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(text);
         return true;
       }
-    } catch (_) { /* fall through to legacy method */ }
-
-    // Legacy fallback for environments without Clipboard API access.
-    const tempInput = document.createElement('textarea');
-    tempInput.value = text;
-    tempInput.style.position = 'fixed';
-    tempInput.style.opacity = '0';
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    let success = false;
-    try { success = document.execCommand('copy'); } catch (_) { success = false; }
-    document.body.removeChild(tempInput);
-    return success;
+    } catch (_) {}
+    const tmp = document.createElement('textarea');
+    tmp.value = text;
+    tmp.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+    document.body.appendChild(tmp);
+    tmp.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (_) {}
+    document.body.removeChild(tmp);
+    return ok;
   }
 
-  // Copy buttons inside the reveal modal (operate on an input's value).
   document.querySelectorAll('.cred-copy-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
-      const targetInput = document.getElementById(btn.dataset.copyTarget);
-      const ok = await copyText(targetInput.value);
+      const input = document.getElementById(btn.dataset.copyTarget);
+      const ok = await copyText(input.value);
       if (ok) {
         btn.classList.add('copied');
         showToast('تم النسخ إلى الحافظة.');
@@ -1342,7 +1106,6 @@
     });
   });
 
-  // Copy buttons inside the table rows (event-delegated, since rows re-render).
   tableBody.addEventListener('click', async (e) => {
     const copyBtn = e.target.closest('.copy-key-btn');
     if (copyBtn) {
@@ -1373,39 +1136,35 @@
   /* ----------------------------------------------------------------
      10. DELETE FLOW
      ---------------------------------------------------------------- */
-
   confirmDeleteBtn.addEventListener('click', async () => {
     if (!pendingDeleteId) return;
-
-    const row = tableBody.querySelector(`tr[data-id="${pendingDeleteId}"]`);
     confirmDeleteBtn.disabled = true;
 
+    const row = tableBody.querySelector(`tr[data-id="${pendingDeleteId}"]`);
     const success = await deleteToken(pendingDeleteId);
 
-    if (success && row) {
-      row.classList.add('row-exit');
-      row.addEventListener('animationend', async () => {
+    closeModal(deleteModal);
+
+    if (success) {
+      showToast('تم حذف الرمز.');
+      if (row) {
+        row.classList.add('row-exit');
+        row.addEventListener('animationend', () => refreshTable(), { once: true });
+      } else {
         await refreshTable();
-      }, { once: true });
-      showToast('تم حذف الرمز.');
-    } else if (success) {
-      await refreshTable();
-      showToast('تم حذف الرمز.');
+      }
     }
 
     confirmDeleteBtn.disabled = false;
     pendingDeleteId = null;
-    closeModal(deleteModal);
   });
 
   /* ----------------------------------------------------------------
-     11. THEME (Dark / Light) — driven entirely by CSS variables
+     11. THEME
      ---------------------------------------------------------------- */
-
   const themeToggleBtn = document.getElementById('themeToggle');
-  const themeLabel       = document.getElementById('themeLabel');
-  const themeIcon        = document.getElementById('themeIcon');
-
+  const themeLabel     = document.getElementById('themeLabel');
+  const themeIcon      = document.getElementById('themeIcon');
   const SUN_ICON  = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>';
   const MOON_ICON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
 
@@ -1421,19 +1180,16 @@
     }
   }
 
-  // Default to the visitor's OS preference; no persistence layer per the brief (no localStorage).
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   applyTheme(prefersDark ? 'dark' : 'light');
 
   themeToggleBtn.addEventListener('click', () => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    applyTheme(isDark ? 'light' : 'dark');
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   });
 
   /* ----------------------------------------------------------------
      12. INIT
      ---------------------------------------------------------------- */
-
   refreshTable();
 
 })();
