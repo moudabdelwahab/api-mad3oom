@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توثيق API مدعوم - Mad3oom API Docs</title>
+    <link rel="stylesheet" href="css/color-system.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .sidebar-footer { display: none; } /* إخفاء قسم تسجيل الخروج في موقع التوثيق العام */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo">مدعوم</div>
+                <p class="platform-name">توثيق API</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#home" class="nav-item active" data-section="home">
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-home"></use></svg></span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="#documentation" class="nav-item" data-section="documentation">
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-docs"></use></svg></span>
+                    <span>التوثيق</span>
+                </a>
+                <a href="#examples" class="nav-item" data-section="examples">
+                    <span class="icon"><svg><use xlink:href="assets/icons.svg#icon-code"></use></svg></span>
+                    <span>أمثلة برمجية</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p class="version">الإصدار 1.0</p>
+                <p class="status">الحالة: <span class="status-badge active">نشط</span></p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="content-section active">
+                <div class="hero">
+                    <h1>توثيق واجهة برمجة تطبيقات مدعوم</h1>
+                    <p class="subtitle">دليل شامل ومطور لإرسال رسائل واتساب الحرة وإدارة العمليات</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="icon-wrapper primary">
+                                <span class="icon icon-lg"><svg><use xlink:href="assets/icons.svg#icon-whatsapp"></use></svg></span>
+                            </div>
+                            <h3>رسائل الجلسة</h3>
+                            <p>إرسال رسائل حرة تماماً للعملاء خلال نافذة الـ 24 ساعة</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="icon-wrapper primary">
+                                <span class="icon icon-lg"><svg><use xlink:href="assets/icons.svg#icon-code"></use></svg></span>
+                            </div>
+                            <h3>أمثلة جاهزة</h3>
+                            <p>أكواد برمجية جاهزة بـ JavaScript, Python, PHP وغيرها</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="icon-wrapper primary">
+                                <span class="icon icon-lg"><svg><use xlink:href="assets/icons.svg#icon-webhooks"></use></svg></span>
+                            </div>
+                            <h3>ويب هوك</h3>
+                            <p>استقبال إشعارات فورية عن الرسائل الواردة وتحديثات الحالة</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="navigateTo('documentation')">ابدأ قراءة التوثيق</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Documentation Section -->
+            <section id="documentation" class="content-section">
+                <h2>توثيق API</h2>
+                
+                <div class="doc-tabs">
+                    <button class="tab-btn active" onclick="switchTab('overview', this)">نظرة عامة</button>
+                    <button class="tab-btn" onclick="switchTab('auth', this)">المصادقة</button>
+                    <button class="tab-btn" onclick="switchTab('whatsapp', this)">واتساب</button>
+                    <button class="tab-btn" onclick="switchTab('webhooks', this)">الويب هوك</button>
+                    <button class="tab-btn" onclick="switchTab('errors', this)">الأخطاء</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="overview" class="tab-pane active">
+                        <h3>نظرة عامة على API</h3>
+                        <p>نظام API متكامل يوفر إمكانيات شاملة لإرسال رسائل واتساب. يدعم النظام المصادقة عبر Bearer Token (API Keys).</p>
+                        
+                        <div class="info-box">
+                            <strong>Base URL:</strong>
+                            <code>https://api.mad3oom.online/v1</code>
+                        </div>
+
+                        <h4>الميزات الرئيسية:</h4>
+                        <ul class="feature-list">
+                            <li>إرسال رسائل حرة (Session Messages) بدون قوالب</li>
+                            <li>دعم نافذة الـ 24 ساعة للرد على العملاء</li>
+                            <li>ويب هوك لاستقبال الرسائل الواردة</li>
+                            <li>سجلات API شاملة لكل عملية</li>
+                        </ul>
+                    </div>
+
+                    <div id="auth" class="tab-pane">
+                        <h3>المصادقة (Authentication)</h3>
+                        <p>يتم استخدام API Keys للمصادقة على الطلبات. يمكنك الحصول على مفتاحك من لوحة تحكم العميل.</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">HTTP Headers</div>
+                            <pre><code>Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>ملاحظة:</strong> لا تقم أبداً بمشاركة مفتاح API الخاص بك في الكود الأمامي (Client-side code).
+                        </div>
+                    </div>
+
+                    <div id="whatsapp" class="tab-pane">
+                        <h3>نقاط الاتصال - واتساب (WhatsApp Endpoints)</h3>
+                        <p>تتيح لك نقاط الاتصال هذه إرسال رسائل حرة (Session Messages) للعملاء عبر واتساب ضمن نافذة الـ 24 ساعة.</p>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <code>/whatsapp/session/send</code>
+                            </div>
+                            <p>إرسال رسالة حرة (Session Message) للعميل</p>
+                            <h5>المعاملات:</h5>
+                            <table class="params-table">
+                                <thead>
+                                    <tr>
+                                        <th>المعامل</th>
+                                        <th>النوع</th>
+                                        <th>الوصف</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>to</code></td>
+                                        <td>string</td>
+                                        <td>رقم هاتف المستلم بالصيغة الدولية (بدون +)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>message</code></td>
+                                        <td>string</td>
+                                        <td>نص الرسالة المراد إرسالها</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="info-box">
+                                <strong>ملاحظة:</strong> يجب أن تكون الرسالة ضمن نافذة الـ 24 ساعة من آخر رسالة استقبلتها من العميل.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="webhooks" class="tab-pane">
+                        <h3>الويب هوك (Webhooks)</h3>
+                        <p>الويب هوك تسمح لتطبيقك بتلقي إشعارات فورية عند استقبال رسائل جديدة من العملاء.</p>
+
+                        <h4>الأحداث المدعومة:</h4>
+                        <ul class="feature-list">
+                            <li><code>message.received</code> - عند استقبال رسالة جديدة من عميل</li>
+                            <li><code>message.status</code> - عند تحديث حالة الرسالة المرسلة (delivered, read)</li>
+                        </ul>
+
+                        <div class="info-box">
+                            يمكنك إعداد رابط الويب هوك الخاص بك من خلال قسم "إعدادات المطور" في لوحة تحكم العميل.
+                        </div>
+                    </div>
+
+                    <div id="errors" class="tab-pane">
+                        <h3>معالجة الأخطاء</h3>
+                        <table class="errors-table">
+                            <thead>
+                                <tr>
+                                    <th>الكود</th>
+                                    <th>المعنى</th>
+                                    <th>الحل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>401</code></td>
+                                    <td>غير مصرح</td>
+                                    <td>تحقق من صحة API Key</td>
+                                </tr>
+                                <tr>
+                                    <td><code>403</code></td>
+                                    <td>نافذة الـ 24 ساعة منتهية</td>
+                                    <td>لا يمكن إرسال رسالة حرة لعميل لم يتفاعل خلال 24 ساعة</td>
+                                </tr>
+                                <tr>
+                                    <td><code>429</code></td>
+                                    <td>تجاوز حد الطلبات</td>
+                                    <td>تقليل معدل إرسال الطلبات</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examples Section -->
+            <section id="examples" class="content-section">
+                <h2>أمثلة برمجية</h2>
+                <p>نماذج جاهزة للاستخدام بمختلف اللغات البرمجية لإرسال رسائل واتساب.</p>
+
+                <div class="example-tabs">
+                    <button class="example-tab-btn active" onclick="switchExample('js', this)">JavaScript</button>
+                    <button class="example-tab-btn" onclick="switchExample('python', this)">Python</button>
+                    <button class="example-tab-btn" onclick="switchExample('php', this)">PHP</button>
+                    <button class="example-tab-btn" onclick="switchExample('curl', this)">cURL</button>
+                </div>
+
+                <div class="example-content">
+                    <div id="example-js" class="example-pane active">
+                        <div class="code-block">
+                            <pre><code>async function sendMessage() {
+    const response = await fetch('https://api.mad3oom.online/v1/whatsapp/session/send', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer YOUR_API_KEY',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            to: '201025998920',
+            message: 'مرحباً بك، كيف يمكننا مساعدتك اليوم؟'
+        })
+    });
+    const data = await response.json();
+    console.log(data);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div id="example-python" class="example-pane">
+                        <div class="code-block">
+                            <pre><code>import requests
+
+url = "https://api.mad3oom.online/v1/whatsapp/session/send"
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
+}
+payload = {
+    "to": "201025998920",
+    "message": "مرحباً بك، كيف يمكننا مساعدتك اليوم؟"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.json())</code></pre>
+                        </div>
+                    </div>
+
+                    <div id="example-php" class="example-pane">
+                        <div class="code-block">
+                            <pre><code>&lt;?php
+$url = "https://api.mad3oom.online/v1/whatsapp/session/send";
+$headers = [
+    "Authorization: Bearer YOUR_API_KEY",
+    "Content-Type: application/json"
+];
+$payload = [
+    "to" => "201025998920",
+    "message" => "مرحباً بك، كيف يمكننا مساعدتك اليوم؟"
+];
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+print_r(json_decode($response, true));</code></pre>
+                        </div>
+                    </div>
+
+                    <div id="example-curl" class="example-pane">
+                        <div class="code-block">
+                            <pre><code>curl -X POST https://api.mad3oom.online/v1/whatsapp/session/send \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "201025998920",
+    "message": "مرحباً بك، كيف يمكننا مساعدتك اليوم؟"
+  }'</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function navigateTo(sectionId) {
+            const navItem = document.querySelector(`[data-section="${sectionId}"]`);
+            if (!navItem) return; // hash doesn't correspond to a top-level section
+
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+
+            document.getElementById(sectionId).classList.add('active');
+            navItem.classList.add('active');
+            window.location.hash = sectionId;
+        }
+
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function switchExample(lang, btn) {
+            document.querySelectorAll('.example-pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.example-tab-btn').forEach(b => b.classList.remove('active'));
+
+            document.getElementById('example-' + lang).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Handle initial hash
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                navigateTo(hash);
+            }
+        });
+    </script>
+</body>
+</html>

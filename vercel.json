@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/v1/whatsapp/session/send",
+      "destination": "https://srnelrdpqkcntbgudyto.supabase.co/functions/v1/whatsapp-session"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "https://api.mad3oom.online/api/$1"
+    }
+  ]
+}
